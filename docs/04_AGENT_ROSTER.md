@@ -148,8 +148,8 @@ Runs monthly from day 15 onward; low priority during the sprint.
 
 **Job:** Run grid scans and organic checks, compute metrics, render heatmaps. Mostly script-driven.
 **Tools/scripts:** `tools/grid.py`, `tools/rank_scan.py`, `tools/metrics.py`, `tools/heatmap.py`, `tools/budget.py`.
-**Writes:** `scans/<date>/raw/*.json`, `scans/<date>/grid.json`, `scans/<date>/metrics.json`,
-`scans/<date>/heatmap-<keyword>.png`.
+**Writes:** `scans/<label>/raw/*.json`, `scans/<label>/grid.json`, `scans/<label>/metrics.json`,
+`scans/<label>/heatmap-<keyword>.png` (label = baseline, mid, final, or a date).
 **Must:** check budget before scanning; same grid, keywords and device each time for comparability; record
 scan parameters; mark incomplete scans.
 **Must not:** scrape Google directly; estimate missing grid points.

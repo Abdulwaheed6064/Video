@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "approval.schema.json",
+  "title": "approvals/<id>.yaml (docs/06 §7) - written by tools/approvals.py",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "client", "action", "artifact", "artifact_sha256", "compliance_report", "requested_by",
+               "requested_at", "owner_approval", "operator_approval", "expires", "status", "consumed_at"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^A[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*$"},
+    "synthetic": {"type": "boolean"},
+    "client": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
+    "action": {"enum": ["gbp_apply_batch", "site_deploy", "post_publish", "review_reply", "review_kit",
+                        "citation_update", "report_send"]},
+    "artifact": {"type": "string", "minLength": 1},
+    "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "compliance_report": {"type": "string", "minLength": 1},
+    "requested_by": {"type": "string", "minLength": 1},
+    "requested_at": {"type": "string", "minLength": 10},
+    "owner_approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "by": {"type": ["string", "null"]},
+        "at": {"type": ["string", "null"]},
+        "evidence": {"type": ["string", "null"]}
+      }
+    },
+    "operator_approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "by": {"type": ["string", "null"]},
+        "at": {"type": ["string", "null"]}
+      }
+    },
+    "rejection": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["by", "at", "reason"],
+      "properties": {
+        "by": {"type": "string"},
+        "at": {"type": "string"},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "expires": {"type": "string", "format": "date"},
+    "status": {"enum": ["requested", "approved", "rejected", "consumed", "expired"]},
+    "consumed_at": {"type": ["string", "null"]},
+    "applied_fields": {"type": ["array", "null"], "items": {"type": "string"}},
+    "applied_record": {"type": ["string", "null"]}
+  }
+}

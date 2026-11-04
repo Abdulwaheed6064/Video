@@ -1,17 +1,17 @@
 # Project status
 
-Last updated: 2026-11-04 (B00, Claude Code cloud)
+Last updated: 2026-11-04 (B01, Claude Code cloud)
 
 ## Current phase
 
-**B00 implemented → ready for B01.** Next action: `/build B01`.
+**B01 implemented → ready for B02.** Next action: `/build B02`.
 
 ## Build steps
 
 | Step | Name | Status | Notes |
 | --- | --- | --- | --- |
 | B00 | Bootstrap (uv, git, demo client, verify tool docs) | implemented | Codex docs not verified (network); see DECISIONS |
-| B01 | Schemas, validator, approvals, budget | not started | |
+| B01 | Schemas, validator, approvals, budget | implemented | USD→CAD rate is a placeholder; link-prospector web-access question open |
 | B02 | Grid, fixture scans, metrics, heatmaps | not started | |
 | B03 | DataForSEO adapter | not started | needs DataForSEO account |
 | B04 | Keyword/competitor + prospect audit | not started | |
@@ -37,7 +37,18 @@ Last updated: 2026-11-04 (B00, Claude Code cloud)
 - `.claude/settings.json` installed (no `git push` deny; see DECISIONS 2026-11-04)
 - `clients/_demo-barber/` synthetic fixture client; `budget/ledger.csv` (header only)
 
+## Implemented in B01
+
+- `schemas/` (11 schemas), `tools/common.py`, `tools/validate.py`, `tools/approvals.py`, `tools/budget.py`,
+  `budget/config.yaml`; tests in `tests/test_validate.py`, `test_approvals.py`, `test_budget.py`
+
+## Blocked / needs the operator
+
+- `budget/config.yaml → usd_to_cad` is a placeholder (1.40); confirm and set `rate_confirmed: true`
+- `GLOBAL_BUDGET_CAD_MONTH` must be set (env or `.env`) before any paid call, otherwise budget.py refuses
+- DECISIONS open question: link-prospector web access (decide before B08)
+
 ## Stubbed / not real yet
 
-Every real script under `tools/`, plus `schemas/` and the site/report/card templates. `tests/` has only the smoke test. Agent specs reference scripts that do not
+Every `tools/` script after B01 (grid, scans, metrics, heatmaps, …) and the site/report/card templates. metrics.schema.json fixes only core fields; B02 may extend it. Agent specs reference scripts that do not
 exist until their build step runs.

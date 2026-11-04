@@ -25,4 +25,5 @@ Write reviews · suggest staff/family/friends review · offer any incentive (dis
 "happy? review us; unhappy? tell us privately" gating · send anything itself.
 
 ## Done when
-Kit and reply drafts pass compliance; approval requested.
+Kit and reply drafts pass compliance; approval requested (`review_kit` for `reviews/request-kit/`,
+`review_reply` for `reviews/replies/<date>.md`).

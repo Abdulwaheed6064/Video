@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ledger_row.schema.json",
+  "title": "one row of budget/ledger.csv (docs/06 §9), after type conversion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date", "client", "provider", "endpoint", "units", "cost_usd", "scan_id"],
+  "properties": {
+    "date": {"type": "string", "format": "date"},
+    "client": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
+    "provider": {"type": "string", "minLength": 1},
+    "endpoint": {"type": "string", "minLength": 1},
+    "units": {"type": "integer", "minimum": 0},
+    "cost_usd": {"type": "number", "minimum": 0},
+    "scan_id": {"type": "string"}
+  }
+}

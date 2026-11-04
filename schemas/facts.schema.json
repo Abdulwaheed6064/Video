@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "facts.schema.json",
+  "title": "facts.yaml (docs/06 §3)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "facts"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "facts": {"type": "array", "items": {"$ref": "#/$defs/fact"}}
+  },
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "key", "value", "status", "source"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^F[0-9]{3,}$"},
+        "key": {"enum": ["name", "phone", "website", "hours", "holiday_hours", "service", "price_policy",
+                         "price", "booking_url", "year_founded", "licence", "attribute", "payment_methods",
+                         "languages", "parking", "accessibility", "service_area", "team_member"]},
+        "value": {"type": "string", "minLength": 1},
+        "status": {"enum": ["proposed", "verified", "rejected"]},
+        "source": {"type": "string", "minLength": 1},
+        "verified_by": {"type": "string", "minLength": 1},
+        "verified_on": {"type": "string", "format": "date"},
+        "note": {"type": "string"}
+      },
+      "if": {"properties": {"status": {"const": "verified"}}},
+      "then": {"required": ["verified_by", "verified_on"]}
+    }
+  }
+}

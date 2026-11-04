@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "client.schema.json",
+  "title": "client.yaml (docs/06 §2)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "slug", "display_name", "mode", "niche", "business_type", "location",
+               "service_area", "timezone", "gbp_status", "target", "scan", "budget_cad_month", "created"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "slug": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["fixture", "pilot", "production"]},
+    "niche": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "business_type": {"enum": ["storefront", "service_area", "hybrid"]},
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["address_public", "lat", "lng", "geocode_source"],
+      "properties": {
+        "address_public": {"type": "boolean"},
+        "address": {"type": ["string", "null"]},
+        "lat": {"type": "number", "minimum": -90, "maximum": 90},
+        "lng": {"type": "number", "minimum": -180, "maximum": 180},
+        "geocode_source": {"type": "string", "minLength": 1}
+      },
+      "if": {"properties": {"address_public": {"const": true}}},
+      "then": {"required": ["address"], "properties": {"address": {"type": "string", "minLength": 1}}}
+    },
+    "service_area": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "timezone": {"type": "string", "minLength": 1},
+    "gbp_status": {"enum": ["active", "pending_verification", "suspended"]},
+    "place_id": {"type": ["string", "null"]},
+    "site_url": {"type": ["string", "null"], "pattern": "^https?://"},
+    "sprint_start": {"type": ["string", "null"], "format": "date"},
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["radius_km", "keywords", "goal", "guarantee_option"],
+      "properties": {
+        "radius_km": {"type": "number", "exclusiveMinimum": 0},
+        "keywords": {"type": "array", "minItems": 1, "uniqueItems": true,
+                     "items": {"type": "string", "minLength": 1}},
+        "goal": {"type": "string", "minLength": 1},
+        "guarantee_option": {"enum": ["A", "B", "C"]}
+      }
+    },
+    "scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grid_size", "spacing_km", "device", "language"],
+      "properties": {
+        "grid_size": {"type": "integer", "minimum": 3, "maximum": 15},
+        "spacing_km": {"type": "number", "exclusiveMinimum": 0},
+        "device": {"enum": ["mobile", "desktop"]},
+        "language": {"type": "string", "minLength": 2},
+        "depth": {"type": "integer", "minimum": 1, "maximum": 100}
+      }
+    },
+    "contacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "owner_name": {"type": "string"},
+        "preferred_channel": {"enum": ["whatsapp", "sms", "email", "phone", "in_person"]}
+      }
+    },
+    "budget_cad_month": {"type": "number", "minimum": 0},
+    "created": {"type": "string", "format": "date"}
+  }
+}
