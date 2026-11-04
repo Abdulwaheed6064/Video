@@ -1,0 +1,58 @@
+# SYNTHETIC demo facts. Fictional business; for fixture runs and tests only.
+schema_version: 1
+synthetic: true
+facts:
+  - id: F001
+    key: name
+    value: "Demo Fade Co. (fictional)"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F002
+    key: phone
+    value: "(905) 555-0100"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F003
+    key: website
+    value: "https://demo-fade.example.test"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F004
+    key: hours
+    value: "Tue-Fri 10:00-19:00; Sat 09:00-17:00; Sun-Mon closed"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F005
+    key: service
+    value: "Skin fade"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F006
+    key: service
+    value: "Beard trim"
+    status: verified
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    verified_by: owner
+    verified_on: 2026-11-04
+  - id: F007
+    key: attribute
+    value: "Award-winning"
+    status: proposed
+    source: "synthetic intake/notes.md 2026-11-04"
+    note: "Owner said this on the call; no award name, year or evidence. Do not use until evidence is supplied."
+  - id: F008
+    key: year_founded
+    value: "2009"
+    status: rejected
+    source: "synthetic intake/questionnaire.md 2026-11-04"
+    note: "Owner corrected on the call: 2009 was a previous shop under another name. Real year still unknown (see questions.md)."

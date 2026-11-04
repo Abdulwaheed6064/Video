@@ -1,0 +1,34 @@
+# SYNTHETIC demo client. Fictional business; no real profile, phone or website.
+schema_version: 1
+synthetic: true
+slug: _demo-barber
+display_name: "Demo Fade Co. (fictional)"
+mode: fixture
+niche: barber
+business_type: storefront
+location:
+  address_public: true
+  address: "1 Example St, Bradford, ON (fictional)"
+  lat: 44.1145
+  lng: -79.5650
+  geocode_source: "synthetic: fixed demo point in central Bradford, not geocoded (B00)"
+service_area: ["Bradford"]
+timezone: America/Toronto
+gbp_status: active
+place_id: null
+sprint_start: 2026-11-05
+target:
+  radius_km: 3
+  keywords: ["barber bradford", "barber shop near me", "fade haircut bradford"]
+  goal: "top3"
+  guarantee_option: A
+scan:
+  grid_size: 7
+  spacing_km: 0.7
+  device: mobile
+  language: en
+contacts:
+  owner_name: "Demo Owner (fictional)"
+  preferred_channel: email
+budget_cad_month: 0
+created: 2026-11-04
