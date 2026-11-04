@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run *)",
+      "Bash(uv add *)",
+      "Bash(uv sync*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm run build*)",
+      "Bash(npx astro *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(git push*)",
+      "Bash(*deploy*)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(cat .env*)"
+    ]
+  }
+}

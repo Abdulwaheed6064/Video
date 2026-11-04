@@ -1,0 +1,27 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# node / astro
+node_modules/
+dist/
+.astro/
+
+# large / regenerable scan data
+clients/*/scans/*/raw/
+prospects/*/scans/*/raw/
+
+# os
+.DS_Store
+Thumbs.db
+
+# real client data — uncomment if this repo is ever not private
+# clients/*
+# !clients/_demo-barber/
