@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-11-04 (B02, Claude Code cloud)
+Last updated: 2026-11-04 (B03 code, Claude Code cloud)
 
 ## Current phase
 
-**B02 implemented → ready for B03 (code in cloud; live test on your PC).** Next action: `/build B03`.
+**B03 code implemented; live smoke test pending (your PC).** Next action: `/build B04` (cloud), and run the B03 live test locally when ready.
 
 ## Build steps
 
@@ -13,7 +13,7 @@ Last updated: 2026-11-04 (B02, Claude Code cloud)
 | B00 | Bootstrap (uv, git, demo client, verify tool docs) | implemented | Codex docs not verified (network); see DECISIONS |
 | B01 | Schemas, validator, approvals, budget | implemented | USD→CAD rate is a placeholder; link-prospector web-access question open |
 | B02 | Grid, fixture scans, metrics, heatmaps | implemented | geocode.py not run live (tests mock Nominatim) |
-| B03 | DataForSEO adapter | not started | needs DataForSEO account |
+| B03 | DataForSEO adapter | implemented (offline) · **pending live test** | API details + prices unverified (docs blocked in cloud) |
 | B04 | Keyword/competitor + prospect audit | not started | |
 | B05 | GBP auditor/optimizer + compliance lint | not started | |
 | B06 | Website template, schema, site checks, deploy | not started | |
@@ -47,6 +47,26 @@ Last updated: 2026-11-04 (B02, Claude Code cloud)
 - `tools/grid.py`, `tools/geocode.py`, `tools/fixture_scan.py`, `tools/metrics.py`, `tools/heatmap.py`
 - Demo: SYNTHETIC `scans/{baseline,mid,final}/` with grid.json, metrics.json, heatmaps (+ before/after)
 
+## Implemented in B03
+
+- `tools/rank_scan.py` (standard queue + `--live`, cache, pending resume, budget check, ledger, place_id
+  match with name/phone fallback, organic, keywords-probe), handmade fixtures in `tests/fixtures/dataforseo/`
+
+## Pending: B03 live smoke test (local only, ≤ US$2, operator must say "approve live test")
+
+1. On your PC, check the DataForSEO docs + pricing against DECISIONS.md "2026-11-04 — B03" (endpoints,
+   coordinate formats, status codes, item fields). Fix `tools/rank_scan.py` if anything differs.
+2. Update `budget/config.yaml`: real `usd_per_task`, `prices_checked: <date>`, `prices_confirmed: true`;
+   confirm `usd_to_cad` and set `rate_confirmed: true`.
+3. `.env`: `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD`, `GLOBAL_BUDGET_CAD_MONTH=100`.
+4. Create `clients/<pilot-slug>/` (mode `pilot`, written permission, `scan.grid_size: 3`, one keyword,
+   `budget_cad_month: 2.80` ≈ US$2) and validate it.
+5. Run:
+   `uv run python tools/rank_scan.py --client <pilot-slug> --label live-smoke --keywords "<keyword>"`
+   then `uv run python tools/metrics.py --client <pilot-slug> --label live-smoke` and
+   `uv run python tools/budget.py report <pilot-slug>`.
+6. Record the real cost and any API differences in DECISIONS.md and SESSION_LOG.md.
+
 ## Blocked / needs the operator
 
 - `budget/config.yaml → usd_to_cad` is a placeholder (1.40); confirm and set `rate_confirmed: true`
@@ -55,5 +75,5 @@ Last updated: 2026-11-04 (B02, Claude Code cloud)
 
 ## Stubbed / not real yet
 
-Every `tools/` script after B02 (rank_scan, competitors, lint_claims, schema_gen, site_check, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
+Every `tools/` script after B03 (competitors, lint_claims, schema_gen, site_check, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
 exist until their build step runs.

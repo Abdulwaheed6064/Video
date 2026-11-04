@@ -1,0 +1,31 @@
+{
+  "_note": "HANDMADE fixture shaped like a DataForSEO v3 serp/google/organic/task_get/advanced response (unverified against live docs). Not real data.",
+  "version": "0.1.20261104",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "tasks": [
+    {
+      "id": "REPLACED-BY-TEST",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "cost": 0,
+      "data": {"se_type": "organic", "keyword": "barber bradford", "tag": "REPLACED-BY-TEST"},
+      "result": [
+        {
+          "keyword": "barber bradford",
+          "type": "organic",
+          "items_count": 4,
+          "items": [
+            {"type": "local_pack", "rank_group": 1, "rank_absolute": 1, "title": "Pack", "domain": "testshop.example.test"},
+            {"type": "organic", "rank_group": 1, "rank_absolute": 2, "domain": "www.rival-one.example.test",
+             "url": "https://www.rival-one.example.test/"},
+            {"type": "organic", "rank_group": 2, "rank_absolute": 3, "domain": "directory.example.test",
+             "url": "https://directory.example.test/bradford/barbers"},
+            {"type": "organic", "rank_group": 3, "rank_absolute": 4, "domain": "www.testshop.example.test",
+             "url": "https://www.testshop.example.test/"}
+          ]
+        }
+      ]
+    }
+  ]
+}

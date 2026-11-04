@@ -55,7 +55,11 @@
         "spacing_km": {"type": "number", "exclusiveMinimum": 0},
         "device": {"enum": ["mobile", "desktop"]},
         "language": {"type": "string", "minLength": 2},
-        "depth": {"type": "integer", "minimum": 1, "maximum": 100}
+        "depth": {"type": "integer", "minimum": 1, "maximum": 100},
+        "zoom": {"type": "string", "pattern": "^[0-9]{1,2}z$"},
+        "town_centre": {"type": "array", "prefixItems": [{"type": "number"}, {"type": "number"}],
+                        "minItems": 2, "maxItems": 2,
+                        "description": "[lat, lng] of the town centre for the organic check (rank_scan --organic)"}
       }
     },
     "contacts": {

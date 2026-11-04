@@ -155,6 +155,9 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 Optional grid.json keys (B02): `client_place_id`; `places` (place_id → name, primary_category, rating,
 reviews, website, lat, lng, from provider data, used for competitors and review counts);
 `organic` (list of {point, lat, lng, keyword, position|null, status}); per point `distance_km`.
+B03 adds: `mode` (grid | keywords-probe), `client_match` (confirmed | unconfirmed | not_found),
+`failures` (list of strings), `params.zoom` (Maps location zoom, e.g. "15z"), and per result `raw`
+(path of the cached provider response under `scans/<label>/raw/`, git-ignored).
 
 `scans/<label>/metrics.json` — produced only by `tools/metrics.py`; definitions in 07. Per keyword:
 `valid_points, error_points, error_cells, found_points, top3_points, arp_found_only,

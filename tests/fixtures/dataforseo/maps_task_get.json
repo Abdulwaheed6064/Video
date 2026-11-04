@@ -1,0 +1,61 @@
+{
+  "_note": "HANDMADE fixture shaped like a DataForSEO v3 serp/google/maps/task_get/advanced response (unverified against live docs). Not real data.",
+  "version": "0.1.20261104",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.0500 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "REPLACED-BY-TEST",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.0300 sec.",
+      "cost": 0,
+      "result_count": 1,
+      "path": ["v3", "serp", "google", "maps", "task_get", "advanced", "REPLACED-BY-TEST"],
+      "data": {"api": "serp", "function": "task_get", "se": "google", "se_type": "maps",
+               "keyword": "barber bradford", "language_code": "en", "device": "mobile", "os": "android",
+               "depth": 20, "tag": "REPLACED-BY-TEST"},
+      "result": [
+        {
+          "keyword": "barber bradford",
+          "type": "maps",
+          "se_domain": "google.com",
+          "location_code": null,
+          "language_code": "en",
+          "check_url": "https://www.google.com/maps/search/barber+bradford/",
+          "datetime": "2026-11-05 15:02:11 +00:00",
+          "item_types": ["maps_paid_item", "maps_search"],
+          "items_count": 5,
+          "items": [
+            {"type": "maps_paid_item", "rank_group": 1, "rank_absolute": 1, "title": "Ad Barber (test)",
+             "place_id": "ChIJ_ad_test", "cid": "111"},
+            {"type": "maps_search", "rank_group": 1, "rank_absolute": 2, "domain": "rival-one.example.test",
+             "title": "Rival One Barbers (test)", "url": "https://rival-one.example.test/",
+             "rating": {"rating_type": "Max5", "value": 4.8, "votes_count": 212, "rating_max": 5},
+             "address": "10 Test Rd, Bradford, ON", "place_id": "ChIJ_rival_one", "cid": "222",
+             "phone": "+1 905-555-0111", "category": "Barber shop", "latitude": 44.115, "longitude": -79.56},
+            {"type": "maps_search", "rank_group": 2, "rank_absolute": 3, "domain": "testshop.example.test",
+             "title": "Test Shop Barbers", "url": "https://testshop.example.test/",
+             "rating": {"rating_type": "Max5", "value": 4.6, "votes_count": 41, "rating_max": 5},
+             "address": "1 Example St, Bradford, ON", "place_id": "ChIJ_client_test", "cid": "333",
+             "phone": "+1 905-555-0100", "category": "Barber shop", "latitude": 44.1145, "longitude": -79.565},
+            {"type": "maps_search", "rank_group": 3, "rank_absolute": 4, "domain": null,
+             "title": "Rival Two (test)", "url": null,
+             "rating": {"rating_type": "Max5", "value": 4.3, "votes_count": 88, "rating_max": 5},
+             "address": "20 Test Rd, Bradford, ON", "place_id": "ChIJ_rival_two", "cid": "444",
+             "phone": "+1 905-555-0122", "category": "Hair salon", "latitude": 44.12, "longitude": -79.57},
+            {"type": "maps_search", "rank_group": 4, "rank_absolute": 5, "domain": "rival-three.example.test",
+             "title": "Rival Three (test)", "url": "https://rival-three.example.test/",
+             "rating": null,
+             "address": "30 Test Rd, Bradford, ON", "place_id": null, "cid": "555",
+             "phone": null, "category": "Barber shop", "latitude": 44.11, "longitude": -79.55}
+          ]
+        }
+      ]
+    }
+  ]
+}
