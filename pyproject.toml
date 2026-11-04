@@ -1,0 +1,22 @@
+[project]
+name = "maps-rank-studio"
+version = "0.1.0"
+requires-python = ">=3.12"
+description = "Maps Rank Studio — deterministic tools for compliant local SEO"
+dependencies = [
+    "httpx>=0.28.1",
+    "jsonschema>=4.26.0",
+    "matplotlib>=3.11.2",
+    "pillow>=13.0.0",
+    "pydantic>=2.14.2",
+    "pyyaml>=6.0.3",
+    "qrcode>=8.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
