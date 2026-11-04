@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-11-04 (B06, Claude Code cloud)
+Last updated: 2026-11-04 (B07, Claude Code cloud)
 
 ## Current phase
 
-**B06 implemented → ready for B07.** B03 live smoke test still pending on your PC.
+**B07 implemented → ready for B08.** B03 live smoke test still pending on your PC.
 
 ## Build steps
 
@@ -17,7 +17,7 @@ Last updated: 2026-11-04 (B06, Claude Code cloud)
 | B04 | Keyword/competitor + prospect audit | implemented | demo outputs lint-clean (B05) |
 | B05 | GBP auditor/optimizer + compliance lint | implemented | demo compliance = self-review (re-check in B11) |
 | B06 | Website template, schema, site checks, deploy | implemented | built in Claude Code (not Codex); LCP unmeasured locally; wrangler flags unverified |
-| B07 | Citations + NAP checker | not started | |
+| B07 | Citations + NAP checker | implemented | directory URLs not loaded (cloud network); checked_on blank |
 | B08 | Reviews, content, links, QR card | not started | |
 | B09 | Reporter, orchestrator, `/sprint` | not started | |
 | B10 | Fixture dry run + live baseline on pilot | not started | needs pilot business + permission |
@@ -89,13 +89,19 @@ Last updated: 2026-11-04 (B06, Claude Code cloud)
    `uv run python tools/budget.py report <pilot-slug>`.
 6. Record the real cost and any API differences in DECISIONS.md and SESSION_LOG.md.
 
+## Implemented in B07
+
+- `knowledge/citations-canada.csv` (19 directories, URLs unverified), `tools/nap_check.py`, `agents/citation.md`
+- Demo: citations/found.csv → nap-report.md + plan.csv (3 wrong, 1 duplicate, 8 missing)
+
 ## Blocked / needs the operator
 
 - `budget/config.yaml → usd_to_cad` is a placeholder (1.40); confirm and set `rate_confirmed: true`
 - `GLOBAL_BUDGET_CAD_MONTH` must be set (env or `.env`) before any paid call, otherwise budget.py refuses
 - DECISIONS open question: link-prospector web access (decide before B08)
+- Load every URL in `knowledge/citations-canada.csv` on your PC and fill `checked_on` (cloud could not)
 
 ## Stubbed / not real yet
 
-Every `tools/` script after B06 (nap_check, review_card, render_report, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
+Every `tools/` script after B07 (review_card, render_report, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
 exist until their build step runs.

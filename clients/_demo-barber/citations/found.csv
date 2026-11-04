@@ -1,0 +1,8 @@
+directory,listing_url,name,address,phone,website,found_by,found_on
+Google Business Profile,https://maps.google.com/?cid=0000000000,Demo Fade Co. (fictional),"1 Example St, Bradford, ON (fictional)",(905) 555-0100,https://demo-fade.example.test/,operator (SYNTHETIC),2026-11-09
+Apple Business Connect,https://maps.apple.com/?q=demo-fade,Demo Fade Co.,"1 Example Street, Bradford, Ontario",905-555-0111,https://demo-fade.example.test,operator (SYNTHETIC),2026-11-09
+Bing Places for Business,https://www.bing.com/maps?q=demo-fade,Demo Fade Co.,"10 Example St, Bradford ON",+1 905 555 0100,http://www.demo-fade.example.test/,operator (SYNTHETIC),2026-11-09
+Facebook Page,https://www.facebook.com/demofade.example,Demo Fade Co,"1 Example St., Bradford, ON",(905)555-0100,https://www.demo-fade.example.test,operator (SYNTHETIC),2026-11-09
+Yelp,https://www.yelp.ca/biz/demo-fade-co-bradford,Demo Fade Co.,"1 Example St, Bradford, ON",905.555.0100,https://demo-fade.example.test/,operator (SYNTHETIC),2026-11-09
+Yelp,https://www.yelp.ca/biz/demo-fade-bradford-2,Demo Fade,"12 Old Rd, Bradford, ON",905-555-0177,,operator (SYNTHETIC),2026-11-09
+YellowPages.ca,https://www.yellowpages.ca/bus/demo-fade,Demo Fade Co. Barbershop Bradford,"1 Example St, Bradford, ON",1-905-555-0100,https://demo-fade.example.test/,operator (SYNTHETIC),2026-11-09
