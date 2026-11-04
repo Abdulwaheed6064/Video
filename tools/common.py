@@ -141,6 +141,16 @@ def parse_compliance_report(path: Path) -> tuple[dict[str, Any] | None, list[str
 SLUG_RE = re.compile(r"^_?[a-z0-9]+(-[a-z0-9]+)*$")
 
 
+LABEL_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+
+def scan_dir(client_dir: Path, label: str) -> Path:
+    """clients/<slug>/scans/<label>, with the label checked (no path tricks)."""
+    if not LABEL_RE.match(label):
+        raise ToolError(f"invalid scan label {label!r} (use e.g. baseline, mid, final, 2026-11-05)")
+    return client_dir / "scans" / label
+
+
 def find_client_dir(slug: str, root: Path = REPO_ROOT) -> Path:
     """Locate clients/<slug> or prospects/<slug> under root."""
     if not SLUG_RE.match(slug):

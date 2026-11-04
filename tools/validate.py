@@ -19,7 +19,6 @@ Exit code 0 = valid, 1 = invalid, 2 = usage error. No network.
 from __future__ import annotations
 
 import argparse
-import re
 import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
@@ -32,6 +31,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from tools.common import (  # noqa: E402
+    LABEL_RE,
     SLUG_RE,
     ToolError,
     load_data,
@@ -58,7 +58,6 @@ TOP_LEVEL_DIRS: set[str] = {
 }
 IGNORED_NAMES: set[str] = {".gitkeep", ".DS_Store", "Thumbs.db"}
 REQUIRED_FILES: tuple[str, ...] = ("client.yaml", "facts.yaml")
-LABEL_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 
 @dataclass

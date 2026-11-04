@@ -25,3 +25,6 @@ Thumbs.db
 # real client data — uncomment if this repo is ever not private
 # clients/*
 # !clients/_demo-barber/
+
+# tool caches (geocode etc.)
+.cache/

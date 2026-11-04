@@ -61,3 +61,23 @@ Template:
 - Stubbed / not working: USD→CAD rate is an unconfirmed placeholder. metrics.schema.json covers core
   fields only (B02 owns metrics.py). link-prospector web-access contradiction recorded as an open question.
 - Next: B02 (grid, geocode, fixture scans, metrics, heatmaps).
+
+## 2026-11-04 · Claude cloud · Claude Code · B02 grid, geocode, fixture scans, metrics, heatmaps
+
+- Files changed: `tools/grid.py`, `tools/geocode.py`, `tools/fixture_scan.py`, `tools/metrics.py`,
+  `tools/heatmap.py`, `tools/common.py` (scan label check), `tools/validate.py`, `schemas/grid.schema.json`
+  (optional places/organic/client_place_id/distance_km), tests (`helpers.py`, `test_grid.py`, `test_geocode.py`,
+  `test_fixture_scan.py`, `test_metrics.py`, `test_heatmap.py`, conftest copies demo without scans),
+  `clients/_demo-barber/` (client.yaml radius 1.5, log.md, scans/{baseline,mid,final}/ grid+metrics+PNGs),
+  `docs/06`, `.gitignore` (.cache/), `DECISIONS.md`, `PROJECT_STATUS.md`.
+- Commands run (with real results):
+  - `uv run pytest -q`: `92 passed in 3.14s`
+  - `uv run python tools/fixture_scan.py --client _demo-barber --label baseline` (also mid, final):
+    `SYNTHETIC scan written: … (49 points × 3 keywords, 2 error points)`
+  - `uv run python tools/metrics.py --client _demo-barber --label baseline`: e.g. `'barber bradford': top3 1/47, found 45, ARP(found) 12.58, ARP(nf=depth+1) 12.94, radius top3 1/13, errors 2`
+  - `uv run python tools/metrics.py --client _demo-barber --label final --baseline baseline`: `'barber bradford': top3 7/47 … radius top3 7/13`
+  - `uv run python tools/heatmap.py --client _demo-barber --label final --compare baseline`: 6 PNGs written (3 single 800×900, 3 composites 1600×900)
+  - `uv run python tools/validate.py clients/_demo-barber`: `OK clients/_demo-barber: 8 file(s) checked, 0 errors`
+- Stubbed / not working: geocode.py was never called live (Nominatim mocked in tests). Heatmaps have
+  no basemap. All demo numbers are synthetic.
+- Next: B03 (DataForSEO adapter). Code and mocked tests can run in the cloud; the live test needs your API keys on your PC.
