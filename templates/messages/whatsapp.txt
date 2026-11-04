@@ -1,0 +1,1 @@
+Hi {first_name}, thanks for coming in to {business_name}. Would you leave us a Google review? Here's the link: {review_link}

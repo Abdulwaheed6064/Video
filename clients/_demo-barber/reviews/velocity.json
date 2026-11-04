@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "client": "_demo-barber",
+  "points": [
+    {
+      "label": "baseline",
+      "date": "2026-11-06",
+      "count": 18,
+      "rating": 4.6,
+      "source": "scans/baseline/grid.json"
+    },
+    {
+      "label": "mid",
+      "date": "2026-11-15",
+      "count": 24,
+      "rating": 4.6,
+      "source": "scans/mid/grid.json"
+    },
+    {
+      "label": "final",
+      "date": "2026-11-25",
+      "count": 30,
+      "rating": 4.6,
+      "source": "scans/final/grid.json"
+    }
+  ],
+  "intervals": [
+    {
+      "from": "baseline",
+      "to": "mid",
+      "days": 9,
+      "delta_count": 6,
+      "per_week": 4.67
+    },
+    {
+      "from": "mid",
+      "to": "final",
+      "days": 10,
+      "delta_count": 6,
+      "per_week": 4.2
+    }
+  ],
+  "overall_per_week": 4.42
+}

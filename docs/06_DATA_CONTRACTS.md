@@ -172,6 +172,15 @@ top3_points, top3_share}, organic{point: position}, delta` (null without `--base
 `reviews{count, rating}`, `reviews_delta`. A delta is `{baseline, current, change, pct_change}` when
 baseline > 0, else `{from: 0, to: N}`.
 
+## 6b. Other script/agent files (B07–B08)
+
+- `citations/found.csv` (operator): `directory, listing_url, name, address, phone, website, found_by, found_on`.
+  `citations/plan.csv` (draft from `tools/nap_check.py`): `directory, url, status, fields_to_fix, enter_name,
+  enter_address, enter_phone, enter_website, who, priority, notes`.
+- `reviews/velocity.json`: only from `tools/review_velocity.py` (`schemas/velocity.schema.json`).
+- `links/prospects.csv` (link-prospector only): `name, url, source_url, checked_on, verified (yes|unverified),
+  why_relevant, cost, contact_route, effort, status (new|contacted|won|declined|dropped)`. Checked by validate.py.
+
 ## 7. Approvals
 
 `approvals/<id>.yaml` — created by `tools/approvals.py request`, decided by a human, consumed when applied.

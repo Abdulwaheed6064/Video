@@ -1,0 +1,10 @@
+Subject: Thanks for visiting {business_name}
+
+Hi {first_name},
+
+Thanks for visiting {business_name}. Would you leave us a Google review? It helps people nearby find us.
+
+{review_link}
+
+Thanks,
+{business_name}

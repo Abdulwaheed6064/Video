@@ -19,6 +19,8 @@ Exit code 0 = valid, 1 = invalid, 2 = usage error. No network.
 from __future__ import annotations
 
 import argparse
+import csv
+import re
 import sys
 from collections.abc import Iterable
 from dataclasses import dataclass, field
@@ -141,6 +143,35 @@ def _check_tasks(report: Report, path: Path, data: Any) -> None:
                 report.error(path, f"task {t.get('id')}: depends_on unknown task {dep}")
         if t.get("status") == "blocked" and not t.get("reason"):
             report.error(path, f"task {t.get('id')}: status blocked without `reason`")
+
+
+LINK_COLUMNS = ["name", "url", "source_url", "checked_on", "verified", "why_relevant", "cost", "contact_route",
+                "effort", "status"]
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _check_link_prospects(report: Report, path: Path, fixture: bool) -> None:
+    with path.open(encoding="utf-8", newline="") as fh:
+        reader = csv.DictReader(fh)
+        if [c.strip() for c in reader.fieldnames or []] != LINK_COLUMNS:
+            report.error(path, f"columns must be {','.join(LINK_COLUMNS)}")
+            return
+        for i, row in enumerate(reader, start=2):
+            where = f"row {i} ({row.get('name') or '?'})"
+            if not (row.get("source_url") or "").startswith(("http://", "https://")):
+                report.error(path, f"{where}: source_url must be the page the prospect was found on")
+            verified = (row.get("verified") or "").strip()
+            checked = (row.get("checked_on") or "").strip()
+            if verified not in {"yes", "unverified"}:
+                report.error(path, f"{where}: verified must be 'yes' or 'unverified'")
+            if verified == "yes" and not DATE_RE.match(checked):
+                report.error(path, f"{where}: verified rows need checked_on (YYYY-MM-DD)")
+            if checked and not DATE_RE.match(checked):
+                report.error(path, f"{where}: checked_on must be YYYY-MM-DD or empty")
+            if (row.get("status") or "").strip() not in {"new", "contacted", "won", "declined", "dropped"}:
+                report.error(path, f"{where}: status must be new/contacted/won/declined/dropped")
+            if fixture and "synthetic" not in (row.get("why_relevant") or "").lower():
+                report.error(path, f"{where}: fixture-mode rows must say SYNTHETIC in why_relevant")
 
 
 def _iter_files(directory: Path, pattern: str) -> Iterable[Path]:
@@ -284,6 +315,20 @@ def validate_client_dir(client_dir: Path) -> Report:
                           for s in ("pass", "fail", "unknown")}
                 if counts != {k: data["summary"].get(k) for k in counts}:
                     report.error(audit_path, f"summary {data['summary']} does not match item counts {counts}")
+
+    # Review velocity (script output).
+    velocity = client_dir / "reviews" / "velocity.json"
+    if velocity.is_file():
+        data = _load(report, velocity)
+        if data is not None:
+            _check_schema(report, velocity, "velocity", data)
+            _check_synthetic(report, velocity, data, fixture)
+
+    # Link prospects (agents/link-prospector.md, AGENTS.md rule 8).
+    prospects_csv = client_dir / "links" / "prospects.csv"
+    if prospects_csv.is_file():
+        report.checked += 1
+        _check_link_prospects(report, prospects_csv, fixture)
 
     # Compliance reports.
     for path in _iter_files(client_dir / "reviews" / "compliance", "*.md"):
