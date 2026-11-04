@@ -1,0 +1,10 @@
+# SYNTHETIC: services for the GBP Services tab, from verified facts only. No prices (no verified price facts).
+schema_version: 1
+synthetic: true
+services:
+  - name: "Skin fade"
+    fact_ref: F005
+    description: "Skin fade haircut."
+  - name: "Beard trim"
+    fact_ref: F006
+    description: "Beard trim and shape-up."

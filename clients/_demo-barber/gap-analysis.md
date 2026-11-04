@@ -6,7 +6,7 @@
 
 ## In 3 minutes: why the shop is not in the top 3
 
-Searches from the shop's own block put it at #1. A few hundred metres away, six other barber shops take
+Searches from the shop's own block put it in first place. A few hundred metres away, six other barber shops take
 the top 3. They all have far more reviews and a website on their listing. For “barber bradford” the shop is
 in the top 3 on 1 of 47 search points, and on 1 of 13 within 1.5 km (`scans/baseline/metrics.json`).
 
@@ -43,7 +43,7 @@ in the top 3 on 1 of 47 search points, and on 1 of 13 within 1.5 km (`scans/base
   radius in this scan, so a wider promise is not supported by the data. 1.0 km is the smallest ring with
   enough points to measure.
 - Operator: copy into `client.yaml → target` (currently `radius_km: 1.5`, a fictional demo value) if you
-  agree. This is a stated target, not a guarantee (docs/01).
+  agree. It is a stated, measured target only (docs/01).
 
 ## Competitor flags
 

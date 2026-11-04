@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "client": "_demo-barber",
+  "date": "2026-11-07",
+  "sources": ["gbp/current.yaml", "facts.yaml", "competitors.json", "knowledge/gbp-categories/barber.md"],
+  "items": [
+    {"id": "verified", "item": "Profile verified", "status": "pass", "evidence": "gbp/current.yaml verification: verified", "owner": "gbp-optimizer"},
+    {"id": "name_matches_signage", "item": "Name matches signage (no keyword stuffing)", "status": "pass", "evidence": "gbp/current.yaml name = facts F001 'Demo Fade Co. (fictional)'", "owner": "gbp-optimizer"},
+    {"id": "primary_category", "item": "Primary category vs top-3 competitors", "status": "pass", "evidence": "gbp/current.yaml primary 'Barber shop'; all 6 competitors in competitors.json show 'Barber shop'", "owner": "gbp-optimizer"},
+    {"id": "secondary_categories", "item": "Secondary categories genuinely offered", "status": "pass", "evidence": "none set; verified services F005 (skin fade) and F006 (beard trim) need no secondary category", "owner": "gbp-optimizer"},
+    {"id": "storefront_setup", "item": "Storefront vs service-area set correctly", "status": "pass", "evidence": "client.yaml business_type storefront; gbp/current.yaml address_shown: true", "owner": "gbp-optimizer"},
+    {"id": "hours", "item": "Regular hours match verified hours", "status": "fail", "evidence": "gbp/current.yaml sat: null; facts F004 says Sat 09:00-17:00", "owner": "gbp-optimizer"},
+    {"id": "holiday_hours", "item": "Holiday hours set", "status": "fail", "evidence": "gbp/current.yaml holiday_hours: []; no verified holiday_hours fact yet (questions.md Q3)", "owner": "gbp-optimizer"},
+    {"id": "phone", "item": "Local phone matches verified phone", "status": "pass", "evidence": "gbp/current.yaml phone = facts F002 (905) 555-0100", "owner": "gbp-optimizer"},
+    {"id": "website_link", "item": "Website link to the right landing page (with UTM)", "status": "fail", "evidence": "gbp/current.yaml website: null; facts F003 https://demo-fade.example.test is verified", "owner": "gbp-optimizer"},
+    {"id": "services_list", "item": "Services list complete", "status": "fail", "evidence": "gbp/current.yaml services: []; verified services F005, F006", "owner": "gbp-optimizer"},
+    {"id": "description", "item": "Description (natural, max 750 characters)", "status": "fail", "evidence": "gbp/current.yaml description is empty", "owner": "gbp-optimizer"},
+    {"id": "attributes", "item": "Attributes", "status": "unknown", "evidence": "gbp/current.yaml attributes: []; no verified attribute facts to compare (F007 is only proposed)", "owner": "gbp-optimizer"},
+    {"id": "booking_link", "item": "Booking link", "status": "unknown", "evidence": "gbp/current.yaml appointment_url: null; no booking_url fact (questions.md Q4)", "owner": "gbp-optimizer"},
+    {"id": "products", "item": "Products/services with photos", "status": "unknown", "evidence": "gbp/current.yaml products: []; no verified product facts. Only needed if the shop sells products", "owner": "content"},
+    {"id": "photos", "item": "At least 10 real photos + logo + cover", "status": "fail", "evidence": "gbp/current.yaml photos total 3, logo false, last added 2025-06-14", "owner": "content"},
+    {"id": "recent_post", "item": "Post in the last 30 days", "status": "fail", "evidence": "gbp/current.yaml last_post_date: null", "owner": "content"},
+    {"id": "qa", "item": "Q&A seeded with genuine FAQs", "status": "fail", "evidence": "gbp/current.yaml qa_count: 0", "owner": "gbp-optimizer"},
+    {"id": "reviews_vs_competitors", "item": "Review count/rating vs competitors", "status": "fail", "evidence": "gbp/current.yaml reviews 18 (rating 4.6); places holding top-3 spots within 1 km: median 197 reviews (competitors.json radius_table)", "owner": "review-engine"},
+    {"id": "review_replies", "item": "Owner replies to reviews", "status": "fail", "evidence": "gbp/current.yaml reply_rate 0.35 (operator count of last 20 reviews)", "owner": "review-engine"},
+    {"id": "competitor_rule_breaks", "item": "Competitors visibly breaking rules (flag only)", "status": "pass", "evidence": "no competitor name in competitors.json contains added keywords or towns", "owner": "operator", "flag": false}
+  ],
+  "summary": {"pass": 7, "fail": 10, "unknown": 3}
+}

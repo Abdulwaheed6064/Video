@@ -140,3 +140,35 @@ def test_bad_compliance_report(root: Path) -> None:
     client = root / "clients" / "_demo-barber"
     (client / "reviews" / "compliance" / "x-2026-11-06.md").write_text("no front matter\n", encoding="utf-8")
     assert any("front matter" in e for e in _errors(client))
+
+
+def test_batch_fact_ref_must_be_verified(root: Path) -> None:
+    client = root / "clients" / "_demo-barber"
+    (client / "gbp" / "changes" / "2026-11-07-batch.yaml").write_text(
+        "schema_version: 1\nsynthetic: true\nclient: _demo-barber\ndate: 2026-11-07\nchanges:\n"
+        "  - field: attributes\n    current: []\n    proposed: [\"Award-winning\"]\n    reason: x\n"
+        "    fact_refs: [F007]\n    ui_path: x\n    risk: low\n", encoding="utf-8")
+    assert any("fact_ref F007 is not a verified fact" in e for e in _errors(client))
+
+
+def test_name_change_must_be_high_risk(root: Path) -> None:
+    client = root / "clients" / "_demo-barber"
+    (client / "gbp" / "changes" / "2026-11-07-batch.yaml").write_text(
+        "schema_version: 1\nsynthetic: true\nclient: _demo-barber\ndate: 2026-11-07\nchanges:\n"
+        "  - field: name\n    current: a\n    proposed: b\n    reason: x\n"
+        "    fact_refs: [F001]\n    ui_path: x\n    risk: low\n", encoding="utf-8")
+    assert any("'high' was expected" in e for e in _errors(client))
+
+
+def test_gbp_audit_summary_must_match(root: Path) -> None:
+    client = root / "clients" / "_demo-barber"
+    audit = {"schema_version": 1, "synthetic": True, "client": "_demo-barber", "date": "2026-11-07",
+             "sources": ["gbp/current.yaml"],
+             "items": [{"id": "verified", "item": "x", "status": "pass", "evidence": "y"},
+                       {"id": "hours", "item": "x", "status": "fail", "evidence": "y"}],
+             "summary": {"pass": 2, "fail": 0, "unknown": 0}}
+    (client / "gbp" / "audit.json").write_text(json.dumps(audit), encoding="utf-8")
+    assert any("does not match item counts" in e for e in _errors(client))
+    audit["summary"] = {"pass": 1, "fail": 1, "unknown": 0}
+    (client / "gbp" / "audit.json").write_text(json.dumps(audit), encoding="utf-8")
+    assert _errors(client) == []

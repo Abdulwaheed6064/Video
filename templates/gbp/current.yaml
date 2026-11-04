@@ -1,0 +1,47 @@
+# gbp/current.yaml: the client's Google Business Profile as it is TODAY.
+# The operator copies this from the GBP dashboard (Manager access, never the owner's password), or fills
+# review counts/rating from scan data (scans/<label>/grid.json -> places). Takes ~10 minutes.
+# Read by gbp-auditor. Copy to clients/<slug>/gbp/current.yaml and fill every field; use null for
+# "not set" and "unknown" when you could not see it. Do not "fix" anything here. This is the before state.
+# UI paths are as of 2026-11 and may move; "Edit profile" = the profile's edit panel opened from
+# Google Search or Maps while signed in as a Manager.
+
+schema_version: 1
+copied_on: YYYY-MM-DD            # date you copied it
+copied_by: operator              # who copied it
+source: gbp_dashboard            # gbp_dashboard | scan_data | mixed
+
+verification: verified           # verified | pending | suspended | unknown. Edit profile > status banner
+name: ""                         # exactly as shown. Edit profile > Business information > Business name
+categories:
+  primary: ""                    # Edit profile > Business information > Business category (first one)
+  secondary: []                  # the additional categories, in order
+storefront:
+  address_shown: true            # Edit profile > Location > Business location ("show address to customers")
+  address: ""                    # as shown, or null if hidden
+service_areas: []                # Edit profile > Location > Service area (towns as listed)
+hours: {}                        # Edit profile > Hours > Opening hours, e.g. tue: "10:00-19:00", mon: closed
+holiday_hours: []                # Edit profile > Hours > Special hours: [{date: YYYY-MM-DD, hours: "closed"}]
+phone: ""                        # Edit profile > Contact > Phone number (primary)
+website: null                    # Edit profile > Contact > Website (copy the full URL incl. any UTM)
+appointment_url: null            # Edit profile > Contact or Bookings > Appointment / booking link
+description: ""                  # Edit profile > Business information > Description (copy verbatim)
+services: []                     # Edit services (from the profile's Services tab): names as listed
+products: []                     # Edit products: names as listed
+attributes: []                   # Edit profile > More > attributes that are set, e.g. "Wheelchair accessible entrance"
+photos:                          # Photos tab > counts by type (owner-added vs customer-added if visible)
+  total: 0
+  logo: false
+  cover: false
+  owner_added: 0
+  customer_added: 0
+  last_added: null               # YYYY-MM-DD of the newest photo, if visible
+last_post_date: null             # Updates/Posts tab: date of the newest post
+qa_count: 0                      # Q&A on the public profile: number of questions
+reviews:
+  count: 0                       # Reviews tab (or scans/<label>/grid.json places[client].reviews)
+  rating: null                   # average rating shown
+  reply_rate: null               # share of the last 20 reviews with an owner reply (0.0-1.0), counted by you
+  newest_review_date: null       # YYYY-MM-DD
+pending_edits: false             # any "edits under review" notice visible?
+notes: ""                        # anything odd (suspension warnings, duplicate profiles seen, etc.)
