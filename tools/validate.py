@@ -248,13 +248,42 @@ def validate_client_dir(client_dir: Path) -> Report:
             if data.get("client") != slug:
                 report.error(path, f"client {data.get('client')!r} != {slug!r}")
 
-    # GBP change batches.
+    # GBP change batches: every fact_ref must be a verified fact.
+    verified_ids: set[str] = set()
+    facts_path = client_dir / "facts.yaml"
+    if facts_path.is_file():
+        try:
+            facts_data = load_data(facts_path)
+            verified_ids = {str(f.get("id")) for f in (facts_data or {}).get("facts", [])
+                            if isinstance(f, dict) and f.get("status") == "verified"}
+        except (OSError, ValueError, yaml.YAMLError, ToolError):
+            pass  # already reported above
     for path in _iter_files(client_dir / "gbp" / "changes", "*.yaml"):
         data = _load(report, path)
         if data is None:
             continue
         _check_schema(report, path, "gbp_change_batch", data)
         _check_synthetic(report, path, data, fixture)
+        if isinstance(data, dict):
+            if data.get("client") != slug:
+                report.error(path, f"client {data.get('client')!r} != {slug!r}")
+            for i, change in enumerate(data.get("changes") or []):
+                for ref in (change.get("fact_refs") or []) if isinstance(change, dict) else []:
+                    if ref not in verified_ids:
+                        report.error(path, f"changes/{i} ({change.get('field')}): fact_ref {ref} is not a verified fact")
+
+    # GBP audit: schema + summary must match the items.
+    audit_path = client_dir / "gbp" / "audit.json"
+    if audit_path.is_file():
+        data = _load(report, audit_path)
+        if data is not None:
+            _check_schema(report, audit_path, "gbp_audit", data)
+            _check_synthetic(report, audit_path, data, fixture)
+            if isinstance(data, dict) and isinstance(data.get("items"), list) and isinstance(data.get("summary"), dict):
+                counts = {s: sum(1 for it in data["items"] if isinstance(it, dict) and it.get("status") == s)
+                          for s in ("pass", "fail", "unknown")}
+                if counts != {k: data["summary"].get(k) for k in counts}:
+                    report.error(audit_path, f"summary {data['summary']} does not match item counts {counts}")
 
     # Compliance reports.
     for path in _iter_files(client_dir / "reviews" / "compliance", "*.md"):

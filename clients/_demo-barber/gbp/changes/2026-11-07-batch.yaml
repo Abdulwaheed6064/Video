@@ -1,0 +1,35 @@
+# SYNTHETIC demo batch 1 for Demo Fade Co. (fictional). Written by gbp-optimizer from gbp/audit.json.
+# Apply in ONE sitting after approval; record with tools/approvals.py consume.
+schema_version: 1
+synthetic: true
+client: _demo-barber
+date: 2026-11-07
+changes:
+  - field: website
+    current: null
+    proposed: "https://demo-fade.example.test/?utm_source=google&utm_medium=organic&utm_campaign=gbp"
+    reason: "No website linked (audit: website_link fail); verified website; UTM tags GBP clicks"
+    fact_refs: [F003]
+    ui_path: "Edit profile > Contact > Website"
+    risk: low
+  - field: services
+    current: []
+    proposed: ["Skin fade", "Beard trim"]
+    reason: "Services list empty (audit: services_list fail); both verified"
+    fact_refs: [F005, F006]
+    ui_path: "Edit services > Add custom service"
+    risk: low
+  - field: hours
+    current: {mon: closed, tue: "10:00-19:00", wed: "10:00-19:00", thu: "10:00-19:00", fri: "10:00-19:00", sat: null, sun: closed}
+    proposed: {mon: closed, tue: "10:00-19:00", wed: "10:00-19:00", thu: "10:00-19:00", fri: "10:00-19:00", sat: "09:00-17:00", sun: closed}
+    reason: "Saturday missing (audit: hours fail); verified hours"
+    fact_refs: [F004]
+    ui_path: "Edit profile > Hours > Opening hours"
+    risk: low
+  - field: description
+    current: ""
+    proposed: "Demo Fade Co. (fictional) is a barber shop in Bradford. We do skin fades and beard trims. We are open Tuesday to Friday from 10:00 to 19:00 and Saturday from 9:00 to 17:00, and closed on Sunday and Monday. Call (905) 555-0100 with any questions, or find more on our website."
+    reason: "Description empty (audit: description fail). Option A from gbp/description-options.md; the owner must approve the wording"
+    fact_refs: [F001, F002, F004, F005, F006]
+    ui_path: "Edit profile > Business information > Description"
+    risk: low

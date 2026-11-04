@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gbp_audit.schema.json",
+  "title": "gbp/audit.json (agents/gbp-auditor.md). summary counts are checked against items by tools/validate.py",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "client", "date", "sources", "items", "summary"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "client": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
+    "date": {"type": "string", "format": "date"},
+    "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "item", "status", "evidence"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "item": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pass", "fail", "unknown"]},
+          "evidence": {"type": "string", "minLength": 1},
+          "owner": {"type": "string"},
+          "flag": {"type": "boolean", "description": "true = competitor rule-break or risk for a human to decide"}
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pass", "fail", "unknown"],
+      "properties": {
+        "pass": {"type": "integer", "minimum": 0},
+        "fail": {"type": "integer", "minimum": 0},
+        "unknown": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

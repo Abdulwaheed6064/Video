@@ -4,7 +4,7 @@
 Score the client's current Google Business Profile against the checklist and the top competitors.
 
 ## Reads
-`gbp/current.yaml` (operator copies from the GBP dashboard; template in `templates/gbp/current.yaml`),
+`gbp/current.yaml` (operator copies from the GBP dashboard; template with UI paths in `templates/gbp/current.yaml`),
 `competitors.json`, `facts.yaml`, `knowledge/gbp-categories/<niche>.md`, `client.yaml`.
 
 ## Writes
@@ -29,4 +29,6 @@ Give evidence for each item (field value or file reference). Use `unknown` rathe
 Propose changes (that's gbp-optimizer). File or suggest filing reports itself.
 
 ## Done when
-Every checklist item has a status and evidence; audit.json validates.
+Every checklist item has a status and evidence; audit.json validates (`schemas/gbp_audit.schema.json`:
+items with id, item, status, evidence, owner; `summary` pass/fail/unknown counts must equal the items:
+`tools/validate.py` checks them).

@@ -1,0 +1,30 @@
+# Example GBP change batch (schema: schemas/gbp_change_batch.schema.json; agents/gbp-optimizer.md).
+# ONE batch per sitting. Every proposed value must come from a verified fact (fact_refs) or be a pure
+# formatting/linking change. name / address / primary_category changes are always risk: high, with a reason.
+# Lint before compliance: uv run python tools/lint_claims.py gbp/changes/<date>-batch.yaml --client <slug>
+# Then compliance-reviewer -> tools/approvals.py request --action gbp_apply_batch -> human approves and applies.
+schema_version: 1
+client: kings-barbers-bradford
+date: 2026-11-06
+changes:
+  - field: website
+    current: null
+    proposed: "https://kingsbarbers.example.test/?utm_source=google&utm_medium=organic&utm_campaign=gbp"
+    reason: "No website linked; verified website fact; UTM so Search Console/analytics can attribute GBP clicks"
+    fact_refs: [F003]
+    ui_path: "Edit profile > Contact > Website"
+    risk: low
+  - field: services
+    current: []
+    proposed: ["Skin fade", "Beard trim"]
+    reason: "Services list empty; both are verified services"
+    fact_refs: [F005, F006]
+    ui_path: "Edit services > Add custom service"
+    risk: low
+  - field: primary_category
+    current: "Hair salon"
+    proposed: "Barber shop"
+    reason: "Business is a barber shop (verified services); top 3 competitors all use Barber shop (competitors.json)"
+    fact_refs: [F005, F006]
+    ui_path: "Edit profile > Business information > Business category"
+    risk: high

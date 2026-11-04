@@ -207,3 +207,27 @@ Decisions:
 - **Niche playbooks** (`knowledge/niche-playbooks/barber.md`, `pest-control.md`) are explicitly
   "starting hypothesis — verify per client". The Ontario pest-control licence note must be checked
   against the Ontario government before any client-facing use.
+
+## 2026-11-04 — B05: GBP agents + compliance lint
+
+- **lint_claims.py is strict on purpose:** "best", "#1", "number one" and "top-rated" are always flagged
+  (no fact can verify them). "guarantee" is always flagged, even when negated ("not a guarantee"). The fix
+  is to reword, not to add exceptions. Award / certified / licensed / years / since YYYY are allowed only
+  with a matching *verified* fact (award → `attribute` fact containing "award"; certified/licensed →
+  `licence`; years → `year_founded`).
+- **Name stuffing** = the business name followed by a separator (- – — | :) and town/service/superlative
+  words within 4 words, or directly followed by one such word. Commas are not separators, so natural
+  prose ("Demo Fade Co. (fictional), a local barber shop") passes. Names are checked with and without a
+  trailing "(…)" marker.
+- **YAML batches:** only `proposed` values are linted. `current`, `reason`, `ui_path`, `fact_refs` etc.
+  are skipped, because they describe today's profile or are internal notes. A `field: name` change is
+  always compared with the verified name.
+- **Addresses** are compared with `client.yaml → location.address`, since facts have no address key. Any
+  address is flagged when `address_public: false`.
+- **New schema `gbp_audit`** (gbp/audit.json). validate.py checks that `summary` equals the item counts,
+  so the audit's numbers are machine-checked rather than typed. validate.py also rejects batch `fact_refs`
+  that are not verified facts, and batch `client` ≠ slug.
+- **Demo run:** the compliance reports were written by the same tool as the proposals (Claude Code).
+  agents/compliance-reviewer.md says self-review is weaker, so the reports say so and B11 should
+  re-review them in Codex. The lint now also passes on the B04 demo gap analyses and the prospect audit
+  page. Two wordings in the demo gap analysis were changed to satisfy it.

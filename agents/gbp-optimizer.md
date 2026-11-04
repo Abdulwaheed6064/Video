@@ -14,7 +14,10 @@ Produce ONE batched change sheet the operator applies in the Google Business Pro
 - `gbp/services.yaml`, `gbp/qa-seed.md` (genuine FAQs the owner actually gets), `gbp/photo-shotlist.md`.
 
 ## Tools/scripts
-`uv run python tools/lint_claims.py <file>` on every output before handing to compliance.
+`uv run python tools/lint_claims.py <file> --client <slug>` on every output before handing to compliance
+(must print PASS; reword rather than argue with a flag). Example batch: `templates/gbp/change-batch.yaml`.
+`tools/validate.py` rejects a batch whose `fact_refs` are not verified facts, or a name/address/
+primary_category change not marked `risk: high`.
 
 ## Must
 - Keep the business name exactly as real-world signage.

@@ -119,3 +119,24 @@ Template:
 - Stubbed / not working: the demo gap analyses and audit page are not compliance-reviewed (B05 brings
   lint_claims). The prospect flow has only run in fixture mode.
 - Next: B05 (GBP auditor/optimizer, category notes, lint_claims).
+
+## 2026-11-04 · Claude cloud · Claude Code · B05 GBP agents + compliance lint
+
+- Files changed: `tools/lint_claims.py` (new), `tools/validate.py` (batch fact_refs/client, gbp/audit.json
+  summary), `schemas/gbp_audit.schema.json`, `templates/gbp/current.yaml`, `templates/gbp/change-batch.yaml`,
+  `knowledge/gbp-categories/{barber,pest-control}.md`, `agents/gbp-auditor.md`, `agents/gbp-optimizer.md`;
+  demo `clients/_demo-barber/gbp/*` (current, audit.md/json, changes/2026-11-07-batch.yaml,
+  description-options, services, qa-seed, photo-shotlist), `reviews/compliance/*` (2 reports),
+  `approvals/A2026-11-07-gbp-apply-batch.yaml`, questions.md Q4, gap-analysis.md (2 rewordings), log.md;
+  tests `test_lint_claims.py` + 3 validator tests; DECISIONS, PROJECT_STATUS.
+- Commands run (with real results):
+  - `uv run pytest -q`: `141 passed in 4.65s`
+  - `uv run python tools/lint_claims.py clients/_demo-barber/gbp/description-options.md --client _demo-barber`:
+    first run `FLAGS: 2` (my own "not used: award… founded" note) → reworded → `PASS: 0 flag(s)`
+  - lint on the batch, services, qa-seed, photo-shotlist: `PASS`. B04 gap-analysis: `FLAGS: 2` ("#1", "guarantee") → reworded → `PASS`
+  - `uv run python tools/approvals.py request … --action gbp_apply_batch …`: `REQUESTED A2026-11-07-gbp-apply-batch … expires 2026-11-10, owner approval required`
+  - `uv run python tools/approvals.py verify A2026-11-07-gbp-apply-batch`: exit 1 (not approved yet; expected)
+  - `uv run python tools/validate.py clients/_demo-barber`: `OK … 15 file(s) checked, 0 errors`
+- Bug found and fixed: the lint's YAML skip covered sibling keys of `- field:` (so `proposed` went unlinted); it now tracks the key column.
+- Stubbed / not working: categories unverified (need the GBP picker). Demo compliance is self-review.
+- Next: B06 (website template, schema_gen, site_check, deploy); build file suggests Codex.

@@ -1,0 +1,49 @@
+# SYNTHETIC: fictional GBP state for the demo client, with deliberate gaps for the B05 demo run.
+# Template: templates/gbp/current.yaml. Review count/rating copied from scans/baseline/grid.json (places).
+schema_version: 1
+synthetic: true
+copied_on: 2026-11-07
+copied_by: operator
+source: mixed
+
+verification: verified
+name: "Demo Fade Co. (fictional)"
+categories:
+  primary: "Barber shop"
+  secondary: []
+storefront:
+  address_shown: true
+  address: "1 Example St, Bradford, ON (fictional)"
+service_areas: []
+hours:
+  mon: closed
+  tue: "10:00-19:00"
+  wed: "10:00-19:00"
+  thu: "10:00-19:00"
+  fri: "10:00-19:00"
+  sat: null
+  sun: closed
+holiday_hours: []
+phone: "(905) 555-0100"
+website: null
+appointment_url: null
+description: ""
+services: []
+products: []
+attributes: []
+photos:
+  total: 3
+  logo: false
+  cover: true
+  owner_added: 1
+  customer_added: 2
+  last_added: 2025-06-14
+last_post_date: null
+qa_count: 0
+reviews:
+  count: 18
+  rating: 4.6
+  reply_rate: 0.35
+  newest_review_date: 2026-09-20
+pending_edits: false
+notes: "Fictional demo profile."
