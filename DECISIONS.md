@@ -262,3 +262,26 @@ Decisions:
 - **Not verified:** wrangler's CLI flags (`pages deploy <dir> --project-name --branch`) come from memory;
   check them against Cloudflare's docs before the first real publish. Google Maps embed via
   `maps?q=lat,lng&output=embed` (no API key) is likewise unverified.
+
+## 2026-11-04 — B07: citations list + nap_check
+
+- **Directory URLs NOT verified.** B07 asks for each URL to be loaded. Every directory host
+  (businessconnect.apple.com, bingplaces.com, yellowpages.ca, homestars.com…) is blocked by this cloud
+  session's network (`getaddrinfo ENOTFOUND`). Web search (2026-11-04) was used instead, to confirm
+  current names/URLs where possible. `checked_on` is left **blank** for every row, and `notes` says what
+  was seen. Operator: load each URL on your PC, fill `checked_on`, and drop dead rows.
+  - Apple Business Connect: search sources point at business.apple.com (not businessconnect.apple.com).
+  - The Newmarket and East Gwillimbury chambers have merged into the **Central York Chamber of Commerce**
+    (news via search). The website was not found.
+  - Bradford West Gwillimbury Chamber of Commerce: no website found in search, so the url is blank.
+  - Foursquare: the claim route is uncertain since the 2024 consumer-app change.
+  - Nothing was dropped as dead, because nothing could be loaded.
+- **Extra column `town`** in citations-canada.csv (blank = any town), so local chambers are only suggested
+  to clients in that town. `applies_to` may list several groups separated by `;`.
+- **found.csv format:** `directory, listing_url, name, address, phone, website, found_by, found_on`.
+- **Matching rules:** names compared case/punctuation-insensitively, ignoring "(…)" markers; the
+  website ignores scheme/www/trailing slash; phone = last 10 digits; the address compares the expanded
+  token sequence (St→street, W→west, ON/Ontario and Canada dropped), plus the unit. The postal code is
+  compared only when the verified address has one. For a hidden-address business, any listing showing a
+  street number is wrong. Per directory, the first matching listing (else the first) is primary and the
+  rest are duplicates.

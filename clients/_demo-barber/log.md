@@ -27,3 +27,7 @@
 - site-auditor: site_check --local, 11 pass / 0 fail / 1 unknown (LCP not measurable locally) → site/audit-2026-11-08.json, .md
 - Not requested for approval: synthetic demo sites are never published (site_release.py refuses fixture clients)
 - HUMAN NEXT: none (demo client)
+
+## 2026-11-09 · days 4–10 · Claude Code (cloud) [B07 demo run]
+- citation: hand-made SYNTHETIC citations/found.csv (7 listings) → tools/nap_check.py: correct 3, wrong 3 (Apple phone, Bing address, YellowPages name), duplicate 1 (Yelp), missing 8 → citations/nap-report.md, draft citations/plan.csv (12 rows)
+- HUMAN NEXT (demo only): review plan.csv; drop booking apps the shop doesn't use; fix wrong listings first

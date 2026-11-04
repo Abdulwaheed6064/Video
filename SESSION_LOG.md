@@ -163,3 +163,16 @@ Template:
   the no-key Maps embed URL are unverified. The publish script has never run against Cloudflare (only its
   refusal paths are tested). No OSM/Lighthouse.
 - Next: B07 (Canadian citations list + nap_check).
+
+## 2026-11-04 · Claude cloud · Claude Code · B07 citations + NAP checker
+
+- Files changed: `knowledge/citations-canada.csv` (new), `tools/nap_check.py` (new), `agents/citation.md`,
+  `tests/test_nap_check.py`, demo `clients/_demo-barber/citations/{found.csv,nap-report.md,plan.csv}`, log.md,
+  DECISIONS, PROJECT_STATUS.
+- Commands run (with real results):
+  - WebFetch businessconnect.apple.com / bingplaces.com / yellowpages.ca / homestars.com: all `getaddrinfo ENOTFOUND` (blocked); stopped trying.
+  - WebSearch ×4 to confirm current names/URLs (findings in the CSV notes + DECISIONS).
+  - `uv run python tools/nap_check.py --client _demo-barber --date 2026-11-09`: correct 3, wrong 3, duplicate 1, missing 8; exit 1 (mismatches present, as designed)
+  - `uv run pytest -q`: `174 passed in 7.40s`
+- Stubbed / not working: no directory URL was loaded; `checked_on` is blank for all rows.
+- Next: B08 (reviews, content, links, QR card). Needs a decision on link-prospector web access first (DECISIONS open question).
