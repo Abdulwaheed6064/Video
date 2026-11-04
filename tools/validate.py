@@ -58,6 +58,11 @@ TOP_LEVEL_DIRS: set[str] = {
 }
 IGNORED_NAMES: set[str] = {".gitkeep", ".DS_Store", "Thumbs.db"}
 REQUIRED_FILES: tuple[str, ...] = ("client.yaml", "facts.yaml")
+# Prospects (docs/13 §11): public data only, a subset of the client layout.
+PROSPECT_FILES: set[str] = {"client.yaml", "facts.yaml", "keywords.json", "competitors.json", "gap-analysis.md",
+                            "questions.md", "log.md"}
+PROSPECT_DIRS: set[str] = {"scans", "reports", "reviews", "approvals"}
+PROSPECT_REQUIRED_FILES: tuple[str, ...] = ("client.yaml",)
 
 
 @dataclass
@@ -152,7 +157,13 @@ def validate_client_dir(client_dir: Path) -> Report:
         report.error(client_dir, "not a directory")
         return report
 
-    for name in REQUIRED_FILES:
+    prospect = client_dir.parent.name == "prospects"
+    required = PROSPECT_REQUIRED_FILES if prospect else REQUIRED_FILES
+    allowed_files = PROSPECT_FILES if prospect else set(TOP_LEVEL_FILES)
+    allowed_dirs = PROSPECT_DIRS if prospect else TOP_LEVEL_DIRS
+    layout = "prospect layout (docs/13 §11)" if prospect else "docs/06 §1 layout"
+
+    for name in required:
         if not (client_dir / name).is_file():
             report.error(client_dir / name, "required file missing")
 
@@ -161,10 +172,10 @@ def validate_client_dir(client_dir: Path) -> Report:
         if entry.name in IGNORED_NAMES:
             continue
         if entry.is_dir():
-            if entry.name not in TOP_LEVEL_DIRS:
-                report.error(entry, "folder not in the docs/06 §1 layout")
-        elif entry.name not in TOP_LEVEL_FILES:
-            report.error(entry, "file not in the docs/06 §1 layout (propose new files in DECISIONS.md)")
+            if entry.name not in allowed_dirs:
+                report.error(entry, f"folder not in the {layout}")
+        elif entry.name not in allowed_files:
+            report.error(entry, f"file not in the {layout} (propose new files in DECISIONS.md)")
 
     # client.yaml first: it decides fixture mode.
     fixture = False
@@ -176,6 +187,11 @@ def validate_client_dir(client_dir: Path) -> Report:
             _check_schema(report, client_path, "client", client)
             if isinstance(client, dict):
                 fixture = client.get("mode") == "fixture"
+                mode = client.get("mode")
+                if prospect and mode not in {"pilot-audit", "fixture"}:
+                    report.error(client_path, f"prospects must be mode pilot-audit (or fixture for demos), got {mode!r}")
+                if not prospect and mode == "pilot-audit":
+                    report.error(client_path, "mode pilot-audit is only for prospects/ (promote_prospect.py sets pilot)")
                 if client.get("slug") != slug:
                     report.error(client_path, f"slug {client.get('slug')!r} != folder name {slug!r}")
                 _check_synthetic(report, client_path, client, fixture)

@@ -181,3 +181,29 @@ Decisions:
   set, "town-centre". The client domain comes from `site_url`, else the verified `website` fact.
 - **Exit codes:** 0 complete, 1 refused, 2 error, 3 incomplete (failures listed in grid.json).
 - New optional client.yaml keys: `scan.zoom`, `scan.town_centre`.
+
+## 2026-11-04 — B04: keywords, competitors, prospect audit
+
+- **competitors.json:** `grid_top3_share` keys are the keyword *text*, not K-ids, because the scan only
+  knows keyword text and K-ids exist only once keywords.json is written. Added `grid_top3_points`,
+  `client` and `radius_table`. The radius table makes the "#3 has under ~3× the client's reviews" radius
+  test computable from a script instead of eyeballed. docs/06 §5 is updated.
+- **Prospects:** `mode: pilot-audit` is added to client.yaml and is valid only under `prospects/`.
+  `budget.py` caps a pilot-audit prospect at US$1 (converted to CAD) whatever `budget_cad_month` says.
+  Prospect layout = client.yaml (required) + facts.yaml, keywords.json, competitors.json, gap-analysis.md,
+  questions.md, log.md, and folders scans/, reports/, reviews/, approvals/. A fixture-mode demo prospect
+  (`prospects/_demo-prospect/`) is allowed for testing the flow.
+- **Audit page:** `tools/prospect_audit.py` renders `templates/report/prospect-audit.html` from files only.
+  The heatmap is embedded as a data URI so the page prints on its own. The 3 gaps come from
+  gap-analysis.md `## Top 3 gaps` and must be exactly 3. Not in the B04 file list; added so the flow works
+  without the agent hand-building HTML. B09's render_report may absorb it later.
+- **promote_prospect.py:** builds `clients/<slug>` next to `clients/`, validates it, then renames it into
+  place and deletes the prospect. On any failure the prospect is untouched. pilot-audit → pilot, and
+  budget defaults to CA$15 (docs/08 §6).
+- **Fixed during B04:** competitors.py's "whole grid" radius was rounded down, which dropped the corner
+  points (1.414 km → 1.41). It now rounds up.
+- **Demo compliance:** the demo gap analyses and audit page were not run through compliance-reviewer.
+  No lint_claims tool exists yet (B05), and no subagent was requested. Do this in B05 / B11.
+- **Niche playbooks** (`knowledge/niche-playbooks/barber.md`, `pest-control.md`) are explicitly
+  "starting hypothesis — verify per client". The Ontario pest-control licence note must be checked
+  against the Ontario government before any client-facing use.

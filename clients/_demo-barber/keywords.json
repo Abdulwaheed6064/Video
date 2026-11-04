@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "keywords": [
+    {"id": "K1", "keyword": "barber bradford", "intent": "local-service", "priority": 1, "on_grid": true,
+     "reason": "Town + core service; found on 45 of 47 baseline points but top 3 on 1 (scans/baseline/metrics.json). SYNTHETIC."},
+    {"id": "K2", "keyword": "barber shop near me", "intent": "near-me", "priority": 1, "on_grid": true,
+     "reason": "The one near-me variant; found on 47 of 47 points, top 3 on 1 (scans/baseline/metrics.json). SYNTHETIC."},
+    {"id": "K3", "keyword": "fade haircut bradford", "intent": "local-service", "priority": 2, "on_grid": true,
+     "reason": "Verified service F005 (skin fade); weakest keyword: found on 35 of 47 points (scans/baseline/metrics.json). SYNTHETIC."}
+  ]
+}

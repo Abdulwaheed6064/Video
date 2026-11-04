@@ -7,7 +7,8 @@ Usage:
     uv run python tools/budget.py report [client] [--month YYYY-MM]
 
 Caps (per calendar month, CAD):
-- client: client.yaml -> budget_cad_month; clients in `mode: fixture` always have cap 0
+- client: client.yaml -> budget_cad_month; clients in `mode: fixture` always have cap 0;
+  prospects in `mode: pilot-audit` never more than US$1 (converted to CAD)
 - global: env GLOBAL_BUDGET_CAD_MONTH (read from the environment, or that one key from .env);
   if it is not set, every paid call is refused (fail closed)
 Ledger costs are USD, converted with budget/config.yaml -> usd_to_cad.
@@ -34,6 +35,7 @@ from tools.common import REPO_ROOT, ToolError, find_client_dir, load_yaml, schem
 
 LEDGER_FIELDS: list[str] = ["date", "client", "provider", "endpoint", "units", "cost_usd", "scan_id"]
 GLOBAL_ENV = "GLOBAL_BUDGET_CAD_MONTH"
+PROSPECT_CAP_USD = 1.0  # hard cap for a pilot-audit prospect (sales audit), docs/13 §11
 EPS = 1e-9
 
 
@@ -110,7 +112,8 @@ def month_spend_usd(rows: list[dict[str, Any]], month: str, client: str | None =
                if r["date"].startswith(month + "-") and (client is None or r["client"] == client))
 
 
-def client_cap_cad(client_dir: Path) -> tuple[float, str]:
+def client_cap_cad(client_dir: Path, usd_to_cad: float) -> tuple[float, str]:
+    """Monthly cap in CAD: fixture = 0; pilot-audit prospects never above US$1 (docs/13 §11)."""
     client = load_yaml(client_dir / "client.yaml") or {}
     mode = client.get("mode")
     if mode == "fixture":
@@ -118,6 +121,8 @@ def client_cap_cad(client_dir: Path) -> tuple[float, str]:
     cap = client.get("budget_cad_month")
     if not isinstance(cap, (int, float)) or isinstance(cap, bool) or cap < 0:
         raise ToolError(f"{client_dir / 'client.yaml'}: budget_cad_month must be a number >= 0")
+    if mode == "pilot-audit":
+        return min(float(cap), PROSPECT_CAP_USD * usd_to_cad), "pilot-audit"
     return float(cap), str(mode)
 
 
@@ -152,7 +157,7 @@ def check(root: Path, slug: str, est_usd: float, month: str) -> tuple[bool, list
     rows = read_ledger(root)
     rate = config.usd_to_cad
     est_cad = est_usd * rate
-    cap, mode = client_cap_cad(client_dir)
+    cap, mode = client_cap_cad(client_dir, rate)
     spent_client = month_spend_usd(rows, month, slug) * rate
     spent_all = month_spend_usd(rows, month) * rate
     gcap = global_cap_cad(root)
@@ -242,7 +247,7 @@ def cmd_report(args: argparse.Namespace) -> int:
     for slug in slugs:
         spent_usd = month_spend_usd(rows, month, slug)
         try:
-            cap, mode = client_cap_cad(find_client_dir(slug, root))
+            cap, mode = client_cap_cad(find_client_dir(slug, root), rate)
             cap_s, left_s = f"{cap:.2f}", f"{cap - spent_usd * rate:.2f}"
         except ToolError:
             mode, cap_s, left_s = "unknown", "-", "-"

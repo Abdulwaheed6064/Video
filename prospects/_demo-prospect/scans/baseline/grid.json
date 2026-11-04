@@ -1,0 +1,985 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "provider": "fixture",
+  "endpoint": "fixture/maps",
+  "params": {
+    "grid_size": 7,
+    "spacing_km": 0.7,
+    "center": [
+      44.112,
+      -79.57
+    ],
+    "device": "mobile",
+    "language": "en",
+    "depth": 20
+  },
+  "keywords": [
+    "barber bradford"
+  ],
+  "client_place_id": "fx-client-demo-prospect",
+  "places": {
+    "fx-client-demo-prospect": {
+      "name": "Sample Clippers (fictional)",
+      "primary_category": "Barber shop",
+      "rating": 4.6,
+      "reviews": 18,
+      "website": null,
+      "lat": 44.112,
+      "lng": -79.57
+    },
+    "fx-place-01": {
+      "name": "Synthetic Competitor 1 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.1,
+      "reviews": 116,
+      "website": "https://competitor-1.example.test",
+      "lat": 44.129253,
+      "lng": -79.590442
+    },
+    "fx-place-02": {
+      "name": "Synthetic Competitor 2 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.4,
+      "reviews": 221,
+      "website": "https://competitor-2.example.test",
+      "lat": 44.109453,
+      "lng": -79.56097
+    },
+    "fx-place-03": {
+      "name": "Synthetic Competitor 3 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.6,
+      "reviews": 134,
+      "website": "https://competitor-3.example.test",
+      "lat": 44.130137,
+      "lng": -79.55953
+    },
+    "fx-place-04": {
+      "name": "Synthetic Competitor 4 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.5,
+      "reviews": 42,
+      "website": "https://competitor-4.example.test",
+      "lat": 44.109097,
+      "lng": -79.560703
+    },
+    "fx-place-05": {
+      "name": "Synthetic Competitor 5 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.3,
+      "reviews": 64,
+      "website": "https://competitor-5.example.test",
+      "lat": 44.102743,
+      "lng": -79.553325
+    },
+    "fx-place-06": {
+      "name": "Synthetic Competitor 6 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.6,
+      "reviews": 230,
+      "website": "https://competitor-6.example.test",
+      "lat": 44.121092,
+      "lng": -79.597159
+    }
+  },
+  "points": [
+    {
+      "row": 0,
+      "col": 0,
+      "lat": 44.130886,
+      "lng": -79.596304,
+      "distance_km": 2.97,
+      "results": {
+        "barber bradford": {
+          "client_rank": 20,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "lat": 44.130886,
+      "lng": -79.587536,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 18,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "lat": 44.130886,
+      "lng": -79.578768,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 17,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "lat": 44.130886,
+      "lng": -79.57,
+      "distance_km": 2.1,
+      "results": {
+        "barber bradford": {
+          "client_rank": 15,
+          "top3": [
+            "fx-place-03",
+            "fx-place-01",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "lat": 44.130886,
+      "lng": -79.561232,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 16,
+          "top3": [
+            "fx-place-03",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "lat": 44.130886,
+      "lng": -79.552464,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 19,
+          "top3": [
+            "fx-place-03",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "lat": 44.130886,
+      "lng": -79.543696,
+      "distance_km": 2.97,
+      "results": {
+        "barber bradford": {
+          "client_rank": 19,
+          "top3": [
+            "fx-place-03",
+            "fx-place-02",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "lat": 44.12459,
+      "lng": -79.596304,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 19,
+          "top3": [
+            "fx-place-06",
+            "fx-place-01",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "lat": 44.12459,
+      "lng": -79.587536,
+      "distance_km": 1.98,
+      "results": {
+        "barber bradford": {
+          "client_rank": 13,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "lat": 44.12459,
+      "lng": -79.578768,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 12,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "lat": 44.12459,
+      "lng": -79.57,
+      "distance_km": 1.4,
+      "results": {
+        "barber bradford": {
+          "client_rank": 9,
+          "top3": [
+            "fx-place-01",
+            "fx-place-04",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "lat": 44.12459,
+      "lng": -79.561232,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 13,
+          "top3": [
+            "fx-place-03",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "lat": 44.12459,
+      "lng": -79.552464,
+      "distance_km": 1.98,
+      "results": {
+        "barber bradford": {
+          "client_rank": 13,
+          "top3": [
+            "fx-place-02",
+            "fx-place-03",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "lat": 44.12459,
+      "lng": -79.543696,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 17,
+          "top3": [
+            "fx-place-03",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "lat": 44.118295,
+      "lng": -79.596304,
+      "distance_km": 2.213,
+      "results": {
+        "barber bradford": {
+          "client_rank": 17,
+          "top3": [
+            "fx-place-06",
+            "fx-place-01",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "lat": 44.118295,
+      "lng": -79.587536,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 10,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "lat": 44.118295,
+      "lng": -79.578768,
+      "distance_km": 0.99,
+      "results": {
+        "barber bradford": {
+          "client_rank": 7,
+          "top3": [
+            "fx-place-02",
+            "fx-place-06",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "lat": 44.118295,
+      "lng": -79.57,
+      "distance_km": 0.7,
+      "results": {
+        "barber bradford": {
+          "client_rank": 6,
+          "top3": [
+            "fx-place-04",
+            "fx-place-03",
+            "fx-place-01"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "lat": 44.118295,
+      "lng": -79.561232,
+      "distance_km": 0.99,
+      "results": {
+        "barber bradford": {
+          "client_rank": 7,
+          "top3": [
+            "fx-place-02",
+            "fx-place-04",
+            "fx-place-03"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "lat": 44.118295,
+      "lng": -79.552464,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 10,
+          "top3": [
+            "fx-place-03",
+            "fx-place-02",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "lat": 44.118295,
+      "lng": -79.543696,
+      "distance_km": 2.213,
+      "results": {
+        "barber bradford": {
+          "client_rank": 14,
+          "top3": [
+            "fx-place-03",
+            "fx-place-02",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "lat": 44.112,
+      "lng": -79.596304,
+      "distance_km": 2.1,
+      "results": {
+        "barber bradford": {
+          "client_rank": 13,
+          "top3": [
+            "fx-place-06",
+            "fx-place-01",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "lat": 44.112,
+      "lng": -79.587536,
+      "distance_km": 1.4,
+      "results": {
+        "barber bradford": {
+          "client_rank": 10,
+          "top3": [
+            "fx-place-01",
+            "fx-place-06",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "lat": 44.112,
+      "lng": -79.578768,
+      "distance_km": 0.7,
+      "results": {
+        "barber bradford": {
+          "client_rank": 5,
+          "top3": [
+            "fx-place-04",
+            "fx-place-01",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "lat": 44.112,
+      "lng": -79.57,
+      "distance_km": 0.0,
+      "results": {
+        "barber bradford": {
+          "client_rank": 1,
+          "top3": [
+            "fx-client-demo-prospect",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "lat": 44.112,
+      "lng": -79.561232,
+      "distance_km": 0.7,
+      "results": {
+        "barber bradford": {
+          "client_rank": 4,
+          "top3": [
+            "fx-place-04",
+            "fx-place-05",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "lat": 44.112,
+      "lng": -79.552464,
+      "distance_km": 1.4,
+      "results": {
+        "barber bradford": {
+          "client_rank": 9,
+          "top3": [
+            "fx-place-05",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "lat": 44.112,
+      "lng": -79.543696,
+      "distance_km": 2.1,
+      "results": {
+        "barber bradford": {
+          "client_rank": 15,
+          "top3": [
+            "fx-place-02",
+            "fx-place-05",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "lat": 44.105705,
+      "lng": -79.596304,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 16,
+          "top3": [
+            "fx-place-06",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "lat": 44.105705,
+      "lng": -79.587536,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 12,
+          "top3": [
+            "fx-place-06",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "lat": 44.105705,
+      "lng": -79.578768,
+      "distance_km": 0.99,
+      "results": {
+        "barber bradford": {
+          "client_rank": 8,
+          "top3": [
+            "fx-place-02",
+            "fx-place-04",
+            "fx-place-06"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "lat": 44.105705,
+      "lng": -79.57,
+      "distance_km": 0.7,
+      "results": {
+        "barber bradford": {
+          "client_rank": 6,
+          "top3": [
+            "fx-place-05",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "lat": 44.105705,
+      "lng": -79.561232,
+      "distance_km": 0.99,
+      "results": {
+        "barber bradford": {
+          "client_rank": 8,
+          "top3": [
+            "fx-place-04",
+            "fx-place-02",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "lat": 44.105705,
+      "lng": -79.552464,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 11,
+          "top3": [
+            "fx-place-02",
+            "fx-place-05",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "lat": 44.105705,
+      "lng": -79.543696,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 15,
+          "top3": [
+            "fx-place-05",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "lat": 44.09941,
+      "lng": -79.596304,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 19,
+          "top3": [
+            "fx-place-06",
+            "fx-place-02",
+            "fx-place-01"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "lat": 44.09941,
+      "lng": -79.587536,
+      "distance_km": 1.98,
+      "results": {
+        "barber bradford": {
+          "client_rank": 15,
+          "top3": [
+            "fx-place-02",
+            "fx-place-04",
+            "fx-place-06"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "lat": 44.09941,
+      "lng": -79.578768,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 10,
+          "top3": [
+            "fx-place-05",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "lat": 44.09941,
+      "lng": -79.57,
+      "distance_km": 1.4,
+      "results": {
+        "barber bradford": {
+          "client_rank": 11,
+          "top3": [
+            "fx-place-04",
+            "fx-place-05",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "lat": 44.09941,
+      "lng": -79.561232,
+      "distance_km": 1.565,
+      "results": {
+        "barber bradford": {
+          "client_rank": 10,
+          "top3": [
+            "fx-place-02",
+            "fx-place-05",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "lat": 44.09941,
+      "lng": -79.552464,
+      "distance_km": 1.98,
+      "results": {
+        "barber bradford": {
+          "client_rank": null,
+          "top3": [],
+          "status": "error",
+          "error": "synthetic provider timeout"
+        }
+      }
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "lat": 44.09941,
+      "lng": -79.543696,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 18,
+          "top3": [
+            "fx-place-05",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "lat": 44.093114,
+      "lng": -79.596304,
+      "distance_km": 2.97,
+      "results": {
+        "barber bradford": {
+          "client_rank": 19,
+          "top3": [
+            "fx-place-04",
+            "fx-place-06",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "lat": 44.093114,
+      "lng": -79.587536,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 18,
+          "top3": [
+            "fx-place-06",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "lat": 44.093114,
+      "lng": -79.578768,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 17,
+          "top3": [
+            "fx-place-02",
+            "fx-place-04",
+            "fx-place-05"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "lat": 44.093114,
+      "lng": -79.57,
+      "distance_km": 2.1,
+      "results": {
+        "barber bradford": {
+          "client_rank": 15,
+          "top3": [
+            "fx-place-05",
+            "fx-place-02",
+            "fx-place-04"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "lat": 44.093114,
+      "lng": -79.561232,
+      "distance_km": 2.214,
+      "results": {
+        "barber bradford": {
+          "client_rank": 16,
+          "top3": [
+            "fx-place-04",
+            "fx-place-05",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "lat": 44.093114,
+      "lng": -79.552464,
+      "distance_km": 2.524,
+      "results": {
+        "barber bradford": {
+          "client_rank": 17,
+          "top3": [
+            "fx-place-05",
+            "fx-place-04",
+            "fx-place-02"
+          ],
+          "status": "ok"
+        }
+      }
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "lat": 44.093114,
+      "lng": -79.543696,
+      "distance_km": 2.97,
+      "results": {
+        "barber bradford": {
+          "client_rank": null,
+          "top3": [],
+          "status": "error",
+          "error": "synthetic provider timeout"
+        }
+      }
+    }
+  ],
+  "organic": [
+    {
+      "point": "shop",
+      "lat": 44.112,
+      "lng": -79.57,
+      "keyword": "barber bradford",
+      "position": 12,
+      "status": "ok"
+    },
+    {
+      "point": "grid-north-edge",
+      "lat": 44.130886,
+      "lng": -79.57,
+      "keyword": "barber bradford",
+      "position": 18,
+      "status": "ok"
+    }
+  ],
+  "complete": true,
+  "cost_usd": 0,
+  "created": "2026-11-05T10:00:00-05:00"
+}

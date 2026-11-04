@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "source_scan": "scans/baseline/grid.json",
+  "keywords": [
+    "barber bradford",
+    "barber shop near me",
+    "fade haircut bradford"
+  ],
+  "client": {
+    "place_id": "fx-client-demo-barber",
+    "match": "confirmed",
+    "name": "Demo Fade Co. (fictional)",
+    "primary_category": "Barber shop",
+    "rating": 4.6,
+    "reviews": 18,
+    "grid_top3_share": {
+      "barber bradford": 0.0213,
+      "barber shop near me": 0.0213,
+      "fade haircut bradford": 0.0213
+    }
+  },
+  "competitors": [
+    {
+      "place_id": "fx-place-04",
+      "name": "Synthetic Competitor 4 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.4,
+      "reviews": 196,
+      "website": "https://competitor-4.example.test",
+      "distance_km": 0.83,
+      "grid_top3_points": {
+        "barber bradford": 33,
+        "barber shop near me": 32,
+        "fade haircut bradford": 32
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.7021,
+        "barber shop near me": 0.6809,
+        "fade haircut bradford": 0.6809
+      }
+    },
+    {
+      "place_id": "fx-place-01",
+      "name": "Synthetic Competitor 1 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.8,
+      "reviews": 246,
+      "website": "https://competitor-1.example.test",
+      "distance_km": 0.7,
+      "grid_top3_points": {
+        "barber bradford": 30,
+        "barber shop near me": 29,
+        "fade haircut bradford": 30
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.6383,
+        "barber shop near me": 0.617,
+        "fade haircut bradford": 0.6383
+      }
+    },
+    {
+      "place_id": "fx-place-06",
+      "name": "Synthetic Competitor 6 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.2,
+      "reviews": 165,
+      "website": "https://competitor-6.example.test",
+      "distance_km": 0.79,
+      "grid_top3_points": {
+        "barber bradford": 29,
+        "barber shop near me": 32,
+        "fade haircut bradford": 28
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.617,
+        "barber shop near me": 0.6809,
+        "fade haircut bradford": 0.5957
+      }
+    },
+    {
+      "place_id": "fx-place-03",
+      "name": "Synthetic Competitor 3 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.3,
+      "reviews": 205,
+      "website": "https://competitor-3.example.test",
+      "distance_km": 1.93,
+      "grid_top3_points": {
+        "barber bradford": 17,
+        "barber shop near me": 17,
+        "fade haircut bradford": 18
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.3617,
+        "barber shop near me": 0.3617,
+        "fade haircut bradford": 0.383
+      }
+    },
+    {
+      "place_id": "fx-place-02",
+      "name": "Synthetic Competitor 2 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.3,
+      "reviews": 198,
+      "website": "https://competitor-2.example.test",
+      "distance_km": 1.8,
+      "grid_top3_points": {
+        "barber bradford": 16,
+        "barber shop near me": 19,
+        "fade haircut bradford": 17
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.3404,
+        "barber shop near me": 0.4043,
+        "fade haircut bradford": 0.3617
+      }
+    },
+    {
+      "place_id": "fx-place-05",
+      "name": "Synthetic Competitor 5 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.4,
+      "reviews": 59,
+      "website": "https://competitor-5.example.test",
+      "distance_km": 2.27,
+      "grid_top3_points": {
+        "barber bradford": 15,
+        "barber shop near me": 11,
+        "fade haircut bradford": 15
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.3191,
+        "barber shop near me": 0.234,
+        "fade haircut bradford": 0.3191
+      }
+    }
+  ],
+  "radius_table": {
+    "barber bradford": [
+      {
+        "radius_km": 0.5,
+        "valid_points": 1,
+        "client_top3_points": 1,
+        "client_top3_share": 1.0,
+        "top3_competitors": 2,
+        "top3_competitor_reviews_median": 221.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 1.0,
+        "valid_points": 9,
+        "client_top3_points": 1,
+        "client_top3_share": 0.1111,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0769,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.0,
+        "valid_points": 25,
+        "client_top3_points": 1,
+        "client_top3_share": 0.04,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.97,
+        "valid_points": 47,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0213,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      }
+    ],
+    "barber shop near me": [
+      {
+        "radius_km": 0.5,
+        "valid_points": 1,
+        "client_top3_points": 1,
+        "client_top3_share": 1.0,
+        "top3_competitors": 2,
+        "top3_competitor_reviews_median": 205.5,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 1.0,
+        "valid_points": 9,
+        "client_top3_points": 1,
+        "client_top3_share": 0.1111,
+        "top3_competitors": 5,
+        "top3_competitor_reviews_median": 198,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0769,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.0,
+        "valid_points": 25,
+        "client_top3_points": 1,
+        "client_top3_share": 0.04,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.97,
+        "valid_points": 47,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0213,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      }
+    ],
+    "fade haircut bradford": [
+      {
+        "radius_km": 0.5,
+        "valid_points": 1,
+        "client_top3_points": 1,
+        "client_top3_share": 1.0,
+        "top3_competitors": 2,
+        "top3_competitor_reviews_median": 180.5,
+        "top3_competitor_reviews_max": 196
+      },
+      {
+        "radius_km": 1.0,
+        "valid_points": 9,
+        "client_top3_points": 1,
+        "client_top3_share": 0.1111,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0769,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.0,
+        "valid_points": 25,
+        "client_top3_points": 1,
+        "client_top3_share": 0.04,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      },
+      {
+        "radius_km": 2.97,
+        "valid_points": 47,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0213,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 197.0,
+        "top3_competitor_reviews_max": 246
+      }
+    ]
+  }
+}

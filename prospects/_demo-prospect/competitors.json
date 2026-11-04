@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "source_scan": "scans/baseline/grid.json",
+  "keywords": [
+    "barber bradford"
+  ],
+  "client": {
+    "place_id": "fx-client-demo-prospect",
+    "match": "confirmed",
+    "name": "Sample Clippers (fictional)",
+    "primary_category": "Barber shop",
+    "rating": 4.6,
+    "reviews": 18,
+    "grid_top3_share": {
+      "barber bradford": 0.0213
+    }
+  },
+  "competitors": [
+    {
+      "place_id": "fx-place-02",
+      "name": "Synthetic Competitor 2 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.4,
+      "reviews": 221,
+      "website": "https://competitor-2.example.test",
+      "distance_km": 0.77,
+      "grid_top3_points": {
+        "barber bradford": 36
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.766
+      }
+    },
+    {
+      "place_id": "fx-place-04",
+      "name": "Synthetic Competitor 4 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.5,
+      "reviews": 42,
+      "website": "https://competitor-4.example.test",
+      "distance_km": 0.81,
+      "grid_top3_points": {
+        "barber bradford": 34
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.7234
+      }
+    },
+    {
+      "place_id": "fx-place-05",
+      "name": "Synthetic Competitor 5 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.3,
+      "reviews": 64,
+      "website": "https://competitor-5.example.test",
+      "distance_km": 1.68,
+      "grid_top3_points": {
+        "barber bradford": 20
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.4255
+      }
+    },
+    {
+      "place_id": "fx-place-06",
+      "name": "Synthetic Competitor 6 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.6,
+      "reviews": 230,
+      "website": "https://competitor-6.example.test",
+      "distance_km": 2.39,
+      "grid_top3_points": {
+        "barber bradford": 18
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.383
+      }
+    },
+    {
+      "place_id": "fx-place-03",
+      "name": "Synthetic Competitor 3 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.6,
+      "reviews": 134,
+      "website": "https://competitor-3.example.test",
+      "distance_km": 2.18,
+      "grid_top3_points": {
+        "barber bradford": 17
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.3617
+      }
+    },
+    {
+      "place_id": "fx-place-01",
+      "name": "Synthetic Competitor 1 (fixture)",
+      "primary_category": "Barber shop",
+      "rating": 4.1,
+      "reviews": 116,
+      "website": "https://competitor-1.example.test",
+      "distance_km": 2.52,
+      "grid_top3_points": {
+        "barber bradford": 15
+      },
+      "grid_top3_share": {
+        "barber bradford": 0.3191
+      }
+    }
+  ],
+  "radius_table": {
+    "barber bradford": [
+      {
+        "radius_km": 0.5,
+        "valid_points": 1,
+        "client_top3_points": 1,
+        "client_top3_share": 1.0,
+        "top3_competitors": 2,
+        "top3_competitor_reviews_median": 131.5,
+        "top3_competitor_reviews_max": 221
+      },
+      {
+        "radius_km": 1.0,
+        "valid_points": 9,
+        "client_top3_points": 1,
+        "client_top3_share": 0.1111,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 125.0,
+        "top3_competitor_reviews_max": 230
+      },
+      {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0769,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 125.0,
+        "top3_competitor_reviews_max": 230
+      },
+      {
+        "radius_km": 2.0,
+        "valid_points": 24,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0417,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 125.0,
+        "top3_competitor_reviews_max": 230
+      },
+      {
+        "radius_km": 2.97,
+        "valid_points": 47,
+        "client_top3_points": 1,
+        "client_top3_share": 0.0213,
+        "top3_competitors": 6,
+        "top3_competitor_reviews_median": 125.0,
+        "top3_competitor_reviews_max": 230
+      }
+    ]
+  }
+}

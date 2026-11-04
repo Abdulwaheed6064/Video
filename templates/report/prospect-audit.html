@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- Prospect rank-map audit, one printable page. Rendered by tools/prospect_audit.py.
+     Every dollar-sign placeholder is filled from files: metrics.json, competitors.json, the heatmap PNG and the
+     "## Top 3 gaps" section of gap-analysis.md. Do not hand-edit numbers. No promises of rank. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Maps rank check: $business</title>
+<style>
+  :root { --ink: #1b1f24; --muted: #5b636e; --line: #d9dde3; --accent: #1f6feb; --warn: #b00020; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 820px; margin: 0 auto; padding: 24px 20px 32px; }
+  .synthetic { border: 2px solid var(--warn); color: var(--warn); font-weight: 700; padding: 6px 10px; margin-bottom: 14px; text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 2px; }
+  .sub { color: var(--muted); margin: 0 0 14px; }
+  .headline { font-size: 17px; font-weight: 600; margin: 8px 0 14px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  img.map { width: 100%; height: auto; border: 1px solid var(--line); }
+  h2 { font-size: 15px; margin: 0 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  tr.client td { font-weight: 700; }
+  ol.gaps { margin: 4px 0 0 18px; padding: 0; }
+  ol.gaps li { margin-bottom: 6px; }
+  .method { color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--line); margin-top: 18px; padding-top: 8px; }
+  @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+  @media print { main { padding: 0; } body { font-size: 12px; } }
+</style>
+</head>
+<body>
+<main>
+  $synthetic_banner
+  <h1>Where $business shows up on Google Maps</h1>
+  <p class="sub">Search: “$keyword” · checked $scan_date from $points search points around the shop</p>
+  <p class="headline">$headline</p>
+  <div class="grid">
+    <div>
+      <img class="map" src="$heatmap_src" alt="Rank map for $keyword: green = top 3, yellow 4–10, orange 11–20, red not in top 20">
+    </div>
+    <div>
+      <h2>Who is in the top 3 most often</h2>
+      <table>
+        <thead><tr><th>Business</th><th class="num">Top-3 share</th><th class="num">Reviews</th><th class="num">Rating</th><th class="num">Distance</th></tr></thead>
+        <tbody>
+$competitor_rows
+        </tbody>
+      </table>
+      <h2 style="margin-top:14px">3 reasons you are not in the top 3 more often</h2>
+      <ol class="gaps">
+$gap_items
+      </ol>
+    </div>
+  </div>
+  <p class="method">
+    Method: $provider data, $grid_size×$grid_size grid, $spacing_km km spacing, $device, top $depth results,
+    $scan_date. Google Maps results change with the searcher's exact location, so this map shows a sample of
+    points, not every search. It shows where the business appears today. It is not a prediction or a
+    promise of any future position. Numbers: $metrics_path, $competitors_path.
+  </p>
+</main>
+</body>
+</html>
