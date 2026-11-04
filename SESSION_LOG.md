@@ -99,3 +99,23 @@ Template:
 - Stubbed / not working: no live call made (operator: skip live test in cloud). DataForSEO endpoints,
   fields and prices are unverified, and prices_confirmed: false blocks paid calls until checked.
 - Next: B04 (cloud). The B03 live smoke test runs on the operator's PC; steps are in PROJECT_STATUS.md.
+
+## 2026-11-04 · Claude cloud · Claude Code · B04 keywords, competitors, prospect audit
+
+- Files changed: `tools/competitors.py`, `tools/promote_prospect.py`, `tools/prospect_audit.py` (new);
+  `tools/validate.py` (prospect layout + mode rules), `tools/budget.py` (pilot-audit US$1 cap);
+  `schemas/client.schema.json` (pilot-audit), `schemas/competitors.schema.json` (client, radius_table,
+  grid_top3_points); `templates/report/prospect-audit.html`; `knowledge/niche-playbooks/{barber,pest-control}.md`;
+  `agents/keyword-competitor.md`, `prompts/audit-prospect.md`; demo client keywords.json, competitors.json,
+  gap-analysis.md, log.md; `prospects/_demo-prospect/` (fixture scan, metrics, heatmap, competitors,
+  gap-analysis, audit page); tests `test_competitors.py`, `test_prospects.py`; docs/06, DECISIONS, PROJECT_STATUS.
+- Commands run (with real results):
+  - `uv run pytest -q`: `122 passed in 4.68s`
+  - `uv run python tools/competitors.py --scan clients/_demo-barber/scans/baseline/grid.json --client _demo-barber`: `SYNTHETIC competitors written: … (6 competitors, source scans/baseline/grid.json)`
+  - `uv run python tools/validate.py clients/_demo-barber`: `OK … 10 file(s) checked, 0 errors`
+  - `uv run python tools/validate.py prospects/_demo-prospect`: `OK … 4 file(s) checked, 0 errors`
+  - `uv run python tools/prospect_audit.py --prospect _demo-prospect --label baseline`: wrote `reports/2026-11-05/audit.html` (screenshot checked)
+- Bug found and fixed: competitors.py dropped the corner points from the "whole grid" radius row (rounding down).
+- Stubbed / not working: the demo gap analyses and audit page are not compliance-reviewed (B05 brings
+  lint_claims). The prospect flow has only run in fixture mode.
+- Next: B05 (GBP auditor/optimizer, category notes, lint_claims).

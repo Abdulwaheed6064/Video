@@ -9,6 +9,20 @@
     "schema_version": {"const": 1},
     "synthetic": {"type": "boolean"},
     "source_scan": {"type": "string", "minLength": 1},
+    "keywords": {"type": "array", "items": {"type": "string"}},
+    "client": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "place_id": {"type": ["string", "null"]},
+        "match": {"type": ["string", "null"]},
+        "name": {"type": ["string", "null"]},
+        "primary_category": {"type": ["string", "null"]},
+        "rating": {"type": ["number", "null"]},
+        "reviews": {"type": ["integer", "null"]},
+        "grid_top3_share": {"type": "object", "additionalProperties": {"type": ["number", "null"]}}
+      }
+    },
     "competitors": {
       "type": "array",
       "items": {
@@ -23,9 +37,31 @@
           "reviews": {"type": ["integer", "null"], "minimum": 0},
           "website": {"type": ["string", "null"]},
           "distance_km": {"type": ["number", "null"], "minimum": 0},
+          "grid_top3_points": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
           "grid_top3_share": {
             "type": "object",
-            "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}
+            "additionalProperties": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    },
+    "radius_table": {
+      "description": "Per keyword and radius: client top-3 share and the review counts of places that hold top-3 spots inside that radius.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["radius_km", "valid_points", "client_top3_points", "client_top3_share"],
+          "properties": {
+            "radius_km": {"type": "number"},
+            "valid_points": {"type": "integer", "minimum": 0},
+            "client_top3_points": {"type": "integer", "minimum": 0},
+            "client_top3_share": {"type": ["number", "null"]},
+            "top3_competitors": {"type": "integer", "minimum": 0},
+            "top3_competitor_reviews_median": {"type": ["number", "null"]},
+            "top3_competitor_reviews_max": {"type": ["integer", "null"]}
           }
         }
       }

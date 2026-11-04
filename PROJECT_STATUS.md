@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-11-04 (B03 code, Claude Code cloud)
+Last updated: 2026-11-04 (B04, Claude Code cloud)
 
 ## Current phase
 
-**B03 code implemented; live smoke test pending (your PC).** Next action: `/build B04` (cloud), and run the B03 live test locally when ready.
+**B04 implemented → ready for B05.** B03 live smoke test still pending on your PC.
 
 ## Build steps
 
@@ -14,7 +14,7 @@ Last updated: 2026-11-04 (B03 code, Claude Code cloud)
 | B01 | Schemas, validator, approvals, budget | implemented | USD→CAD rate is a placeholder; link-prospector web-access question open |
 | B02 | Grid, fixture scans, metrics, heatmaps | implemented | geocode.py not run live (tests mock Nominatim) |
 | B03 | DataForSEO adapter | implemented (offline) · **pending live test** | API details + prices unverified (docs blocked in cloud) |
-| B04 | Keyword/competitor + prospect audit | not started | |
+| B04 | Keyword/competitor + prospect audit | implemented | demo outputs not yet compliance-reviewed (B05) |
 | B05 | GBP auditor/optimizer + compliance lint | not started | |
 | B06 | Website template, schema, site checks, deploy | not started | |
 | B07 | Citations + NAP checker | not started | |
@@ -52,6 +52,14 @@ Last updated: 2026-11-04 (B03 code, Claude Code cloud)
 - `tools/rank_scan.py` (standard queue + `--live`, cache, pending resume, budget check, ledger, place_id
   match with name/phone fallback, organic, keywords-probe), handmade fixtures in `tests/fixtures/dataforseo/`
 
+## Implemented in B04
+
+- `tools/competitors.py`, `tools/promote_prospect.py`, `tools/prospect_audit.py`,
+  `templates/report/prospect-audit.html`, `knowledge/niche-playbooks/{barber,pest-control}.md`,
+  validate.py + budget.py prospect support (`mode: pilot-audit`, US$1 cap)
+- Demo client: keywords.json, competitors.json, gap-analysis.md. Demo prospect `prospects/_demo-prospect/`
+  with a SYNTHETIC audit page
+
 ## Pending: B03 live smoke test (local only, ≤ US$2, operator must say "approve live test")
 
 1. On your PC, check the DataForSEO docs + pricing against DECISIONS.md "2026-11-04 — B03" (endpoints,
@@ -75,5 +83,5 @@ Last updated: 2026-11-04 (B03 code, Claude Code cloud)
 
 ## Stubbed / not real yet
 
-Every `tools/` script after B03 (competitors, lint_claims, schema_gen, site_check, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
+Every `tools/` script after B04 (lint_claims, schema_gen, site_check, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
 exist until their build step runs.

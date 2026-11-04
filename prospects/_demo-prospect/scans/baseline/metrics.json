@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "label": "baseline",
+  "source_scan": "scans/baseline/grid.json",
+  "baseline_scan": null,
+  "params": {
+    "grid_size": 7,
+    "spacing_km": 0.7,
+    "center": [
+      44.112,
+      -79.57
+    ],
+    "device": "mobile",
+    "language": "en",
+    "depth": 20
+  },
+  "complete": true,
+  "provider": "fixture",
+  "created": "2026-11-05T10:00:00-05:00",
+  "reviews": {
+    "count": 18,
+    "rating": 4.6
+  },
+  "keywords": {
+    "barber bradford": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "found_points": 47,
+      "top3_points": 1,
+      "arp_found_only": 12.96,
+      "arp_not_found_as_depth_plus_1": 12.96,
+      "top3_share": 0.0213,
+      "found_share": 1.0,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 1,
+        "top3_share": 0.0769
+      },
+      "organic": {
+        "shop": 12,
+        "grid-north-edge": 18
+      },
+      "delta": null
+    }
+  }
+}

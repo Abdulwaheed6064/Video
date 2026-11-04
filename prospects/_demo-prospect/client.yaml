@@ -1,0 +1,32 @@
+# SYNTHETIC demo prospect for the sales-audit flow. Fictional business; public-data audit only.
+# A real prospect uses mode: pilot-audit (hard cap US$1) and coordinates from tools/geocode.py.
+schema_version: 1
+synthetic: true
+slug: _demo-prospect
+display_name: "Sample Clippers (fictional)"
+mode: fixture
+niche: barber
+business_type: storefront
+location:
+  address_public: true
+  address: "2 Example Ave, Bradford, ON (fictional)"
+  lat: 44.1120
+  lng: -79.5700
+  geocode_source: "synthetic: fixed demo point, not geocoded (B04)"
+service_area: ["Bradford"]
+timezone: America/Toronto
+gbp_status: active
+place_id: null
+sprint_start: null
+target:
+  radius_km: 1.5
+  keywords: ["barber bradford"]
+  goal: "top3"
+  guarantee_option: A
+scan:
+  grid_size: 7
+  spacing_km: 0.7
+  device: mobile
+  language: en
+budget_cad_month: 0
+created: 2026-11-04

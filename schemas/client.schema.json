@@ -11,7 +11,8 @@
     "synthetic": {"type": "boolean"},
     "slug": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
     "display_name": {"type": "string", "minLength": 1},
-    "mode": {"enum": ["fixture", "pilot", "production"]},
+    "mode": {"enum": ["fixture", "pilot", "production", "pilot-audit"],
+             "description": "pilot-audit = sales prospect (prospects/ only), public data, hard cap US$1"},
     "niche": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
     "business_type": {"enum": ["storefront", "service_area", "hybrid"]},
     "location": {

@@ -126,6 +126,12 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 }
 ```
 
+B04: `grid_top3_share` keys are the keyword text (not K-ids), each competitor also has
+`grid_top3_points`, and the file adds `keywords`, `client` (the client's own place, rating, reviews,
+top-3 share from the same scan) and `radius_table` (per keyword: radius_km, valid_points,
+client_top3_points, client_top3_share, top3_competitors, top3_competitor_reviews_median/max).
+Schema: `schemas/competitors.schema.json`.
+
 ## 6. Scan files
 
 `scans/<label>/grid.json`
