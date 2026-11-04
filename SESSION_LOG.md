@@ -81,3 +81,21 @@ Template:
 - Stubbed / not working: geocode.py was never called live (Nominatim mocked in tests). Heatmaps have
   no basemap. All demo numbers are synthetic.
 - Next: B03 (DataForSEO adapter). Code and mocked tests can run in the cloud; the live test needs your API keys on your PC.
+
+## 2026-11-04 · Claude cloud · Claude Code · B03 DataForSEO adapter (code; live test skipped by operator)
+
+- Files changed: `tools/rank_scan.py` (new), `tools/budget.py` (`append_row`), `budget/config.yaml`
+  (dataforseo placeholder prices, unconfirmed), `schemas/grid.schema.json` (mode, client_match, failures,
+  params.zoom), `schemas/client.schema.json` (scan.zoom, scan.town_centre), `tests/test_rank_scan.py`,
+  `tests/fixtures/dataforseo/{maps,organic}_task_get.json` (handmade), `docs/06`, `DECISIONS.md`,
+  `PROJECT_STATUS.md`.
+- Commands run (with real results):
+  - WebFetch docs.dataforseo.com / dataforseo.com: `getaddrinfo ENOTFOUND` (blocked by session network);
+    WebSearch used instead, and findings are marked unverified in DECISIONS.
+  - `uv run pytest -q`: `107 passed in 3.82s`
+  - `uv run python tools/rank_scan.py --help`: usage printed, exit 0
+  - `uv run python tools/rank_scan.py --client _demo-barber --label x`: `REFUSED: client _demo-barber is in fixture mode: no paid calls. Use: uv run python tools/fixture_scan.py …`, exit 1
+  - `uv run python tools/validate.py clients/_demo-barber`: `OK … 8 file(s) checked, 0 errors`
+- Stubbed / not working: no live call made (operator: skip live test in cloud). DataForSEO endpoints,
+  fields and prices are unverified, and prices_confirmed: false blocks paid calls until checked.
+- Next: B04 (cloud). The B03 live smoke test runs on the operator's PC; steps are in PROJECT_STATUS.md.

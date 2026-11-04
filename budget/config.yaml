@@ -6,3 +6,18 @@
 usd_to_cad: 1.40
 rate_date: 2026-11-04
 rate_confirmed: false
+
+# DataForSEO prices used by tools/rank_scan.py for cost ESTIMATES before budget.py check.
+# UNVERIFIED in B03: the DataForSEO sites were blocked from the cloud session. These are deliberately
+# on the high side of figures seen in search results. rank_scan.py refuses every paid call until the
+# operator checks the live pricing page, updates these, sets prices_checked and prices_confirmed: true.
+# Price is per task (one SERP of up to 100 results); depth > 100 multiplies it (ceil(depth / 100)).
+dataforseo:
+  prices_confirmed: false
+  prices_checked: null
+  minimum_deposit_usd: 50
+  usd_per_task:
+    maps_standard: 0.0010
+    maps_live: 0.0030
+    organic_standard: 0.0010
+    organic_live: 0.0030

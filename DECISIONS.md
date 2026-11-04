@@ -141,3 +141,43 @@ Operator to decide before B08.
 - **Demo client:** `target.radius_km` changed from 3 to 1.5. At 0.7 km spacing the 7×7 grid fits
   entirely inside 3 km, so the target-radius metric would equal the whole-grid metric. 1.5 km is a
   fictional value chosen to exercise the code.
+
+## 2026-11-04 — B03: DataForSEO adapter (code only; live test pending)
+
+**Docs check: BLOCKED.** docs.dataforseo.com and dataforseo.com are outside this cloud session's
+allowed network, so the current docs and prices could not be read. What `tools/rank_scan.py` assumes,
+from search-result snippets (2026-11-04) and prior knowledge. **Verify every line on your PC before the
+first live run:**
+
+| Item | Assumed | Source |
+| --- | --- | --- |
+| Base URL | `https://api.dataforseo.com/v3/`, HTTP Basic auth (login + API password) | prior knowledge |
+| Maps standard | `POST serp/google/maps/task_post` (≤ 100 tasks/POST) → `GET serp/google/maps/task_get/advanced/{id}` | search snippet + prior |
+| Maps live | `POST serp/google/maps/live/advanced` (1 task per call) | search snippet |
+| Organic | `serp/google/organic/task_post`, `…/task_get/advanced/{id}`, `…/live/advanced` | search snippet |
+| Maps coordinates | `location_coordinate: "lat,lng,zoom"`, e.g. `44.1145,-79.565,15z` (zoom default 15z, set per client via `scan.zoom`) | search snippet (local_finder/maps) |
+| Organic coordinates | `location_coordinate: "lat,lng,radius"`; we send radius 200 (snippet said the unit is millimetres with min 199; treat the unit as unverified) | search snippet |
+| Other request fields | `keyword, language_code, device (mobile/desktop), os, depth, tag` | prior knowledge |
+| Depth | default 100, max 700; billed per 100 results (depth 150 = ×2) | search snippet |
+| Status codes | 20000 ok, 20100 task created, 40601/40602 handed/in queue (poll again) | prior knowledge |
+| Maps result items | `type: maps_search` (ads are `maps_paid_item`, ignored), `rank_group`, `title`, `place_id`, `cid`, `rating.value`, `rating.votes_count`, `category`, `phone`, `address`, `url`, `domain`, `latitude`, `longitude` | prior knowledge |
+| Organic items | `type: organic`, `rank_group`, `domain`, `url` | prior knowledge |
+| Prices | Maps standard ≈ US$0.0006/SERP (DataForSEO marketing page, via search); live ≈ US$0.002 (third-party reseller, may be stale); minimum deposit ≈ US$50 (docs/08) | search snippets |
+
+Decisions:
+- `budget/config.yaml → dataforseo.usd_per_task` holds **deliberately high placeholder** prices
+  (0.0010 standard, 0.0030 live) with `prices_confirmed: false`. rank_scan.py refuses every paid call
+  until the operator confirms them. Estimate = tasks × price × ceil(depth/100). The ledger records the
+  actual `cost` DataForSEO returns per task.
+- **Caching:** `scans/<label>/raw/<job>.json` is a cache hit only when the stored request equals the new
+  one, so parameter changes never reuse stale data. Posted-but-unfetched tasks live in
+  `raw/pending.json` and are fetched on re-run, never re-posted. Error responses are cached too, so they
+  are not re-bought automatically; delete that raw file to retry a point.
+- **Client match:** client.yaml `place_id` → `confirmed`. Otherwise the listing whose phone matches the
+  verified phone fact (2 points) and/or whose name equals display_name (1 point), the most frequent
+  across points → `unconfirmed`, plus a row in questions.md. Nothing found → `not_found`.
+- **Place id fallback:** if a listing has no `place_id`, `cid:<cid>` is used.
+- **Organic check points:** "shop" (centre) and, if `client.yaml → scan.town_centre: [lat, lng]` is
+  set, "town-centre". The client domain comes from `site_url`, else the verified `website` fact.
+- **Exit codes:** 0 complete, 1 refused, 2 error, 3 incomplete (failures listed in grid.json).
+- New optional client.yaml keys: `scan.zoom`, `scan.town_centre`.

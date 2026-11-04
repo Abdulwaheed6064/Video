@@ -196,9 +196,18 @@ def cmd_check(args: argparse.Namespace) -> int:
     return 0 if ok else 1
 
 
+def append_row(root: Path, row: dict[str, Any]) -> None:
+    """Validate and append one ledger row (refuses to append to a broken ledger)."""
+    find_client_dir(str(row.get("client")), root)
+    read_ledger(root)
+    errors = schema_errors("ledger_row", row)
+    if errors:
+        raise ToolError(f"invalid ledger row: {'; '.join(errors)}")
+    with ledger_path(root).open("a", encoding="utf-8", newline="") as fh:
+        csv.DictWriter(fh, fieldnames=LEDGER_FIELDS, lineterminator="\n").writerow(row)
+
+
 def cmd_record(args: argparse.Namespace) -> int:
-    find_client_dir(args.client, args.root)
-    read_ledger(args.root)  # refuse to append to a broken ledger
     row: dict[str, Any] = {
         "date": args.date or date.today().isoformat(),
         "client": args.client,
@@ -208,11 +217,7 @@ def cmd_record(args: argparse.Namespace) -> int:
         "cost_usd": args.cost_usd,
         "scan_id": args.scan_id,
     }
-    errors = schema_errors("ledger_row", row)
-    if errors:
-        raise ToolError(f"invalid ledger row: {'; '.join(errors)}")
-    with ledger_path(args.root).open("a", encoding="utf-8", newline="") as fh:
-        csv.DictWriter(fh, fieldnames=LEDGER_FIELDS, lineterminator="\n").writerow(row)
+    append_row(args.root, row)
     print(f"RECORDED {row['date']} {args.client} {args.provider} {args.endpoint} "
           f"units={args.units} US${args.cost_usd:.4f} scan={args.scan_id}")
     return 0
