@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Actions from '../components/Actions.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import Photo from '../components/Photo.astro';
+import config from '../../site.config.json';
+const h = config.home;
+---
+<Base title={h.title} description={h.meta_description} path="/">
+  <section class="hero">
+    <h1>{h.h1}</h1>
+    {h.intro.map((p) => <p class="lead">{p}</p>)}
+    <Actions />
+  </section>
+
+  <section>
+    <h2>Services</h2>
+    <ul class="cards">
+      {config.services.map((s) => (
+        <li class="card">
+          <h3><a href={`/${s.slug}/`}>{s.name}</a></h3>
+          <p>{s.meta_description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="split">
+    <Photo alt={`${config.business.name} storefront`} />
+    <div>
+      <h2>Find us</h2>
+      {config.business.address_public
+        ? <p>{config.business.address_lines.join(', ')}</p>
+        : <p>Serving {config.business.service_area.join(', ')}</p>}
+      <p><a href="/contact/">Hours and contact details</a></p>
+    </div>
+  </section>
+
+  <MapEmbed />
+</Base>

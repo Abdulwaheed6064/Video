@@ -1,0 +1,28 @@
+---
+// One page per verified service (site.config.json -> services). Copy is written per page by the
+// site-builder agent so pages are genuinely different (site_check flags > 60% similarity).
+import Base from '../layouts/Base.astro';
+import Actions from '../components/Actions.astro';
+import Photo from '../components/Photo.astro';
+import config from '../../site.config.json';
+
+export function getStaticPaths() {
+  return config.services.map((s) => ({ params: { service: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const others = config.services.filter((o) => o.slug !== s.slug);
+---
+<Base title={s.title} description={s.meta_description} path={`/${s.slug}/`}>
+  <article>
+    <h1>{s.h1}</h1>
+    {s.body.map((p) => <p>{p}</p>)}
+    <Actions />
+    <Photo alt={s.image_alt} />
+  </article>
+  {others.length > 0 && (
+    <aside class="related">
+      <h2>Other services</h2>
+      <ul>{others.map((o) => <li><a href={`/${o.slug}/`}>{o.name}</a></li>)}</ul>
+    </aside>
+  )}
+</Base>

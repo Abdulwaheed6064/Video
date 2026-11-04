@@ -140,3 +140,26 @@ Template:
 - Bug found and fixed: the lint's YAML skip covered sibling keys of `- field:` (so `proposed` went unlinted); it now tracks the key column.
 - Stubbed / not working: categories unverified (need the GBP picker). Demo compliance is self-review.
 - Next: B06 (website template, schema_gen, site_check, deploy); build file suggests Codex.
+
+## 2026-11-04 · Claude cloud · Claude Code · B06 website template, schema, site checks, publish gate
+
+- Files changed: `templates/site/` (Astro 7.4.5 template: Base layout with JSON-LD/canonical/OG, home,
+  [service], contact, 404, robots.txt endpoint, sitemap, CSS, labelled placeholder image, sample config,
+  content.example.yaml, package-lock); `tools/schema_gen.py`, `tools/build_site_config.py`, `tools/site_check.py`,
+  `tools/site_release.py`, `tools/deploy.sh`, `tools/deploy.ps1`; `pyproject.toml`/`uv.lock` (+extruct);
+  `schemas/client.schema.json` (schema_type, cloudflare_pages_project); `agents/site-builder.md`,
+  `agents/site-auditor.md`; `tests/test_site.py`, conftest (skip node_modules/dist); demo
+  `clients/_demo-barber/site/` (content.yaml, generated site.config.json, template copy, audit-2026-11-08.json/.md),
+  log.md; DECISIONS, PROJECT_STATUS.
+- Commands run (with real results):
+  - `uv run pytest -q`: `158 passed in 6.79s`
+  - `uv run python tools/build_site_config.py --client _demo-barber`: `wrote clients/_demo-barber/site/site.config.json (2 service page(s), SYNTHETIC)`
+    (first attempt refused: lint flagged "Demo Fade Co. (fictional), Bradford" in the contact title → reworded)
+  - `cd clients/_demo-barber/site && npm install && npm run build`: `5 page(s) built … Complete!`
+  - Build determinism: 3 builds (incl. clean dist) → identical digest `2aedef4e…6eb0`
+  - `uv run python tools/site_check.py --client _demo-barber --local --date 2026-11-08`: 11 PASS, 1 UNKNOWN (performance_lcp), `0 must-pass failure(s)`
+  - Screenshots of home (desktop) and skin-fade page (mobile) checked via a local preview server.
+- Stubbed / not working: LCP not measured (needs a public preview + PAGESPEED_API_KEY). Wrangler flags and
+  the no-key Maps embed URL are unverified. The publish script has never run against Cloudflare (only its
+  refusal paths are tested). No OSM/Lighthouse.
+- Next: B07 (Canadian citations list + nap_check).

@@ -231,3 +231,34 @@ Decisions:
   agents/compliance-reviewer.md says self-review is weaker, so the reports say so and B11 should
   re-review them in Codex. The lint now also passes on the B04 demo gap analyses and the prospect audit
   page. Two wordings in the demo gap analysis were changed to satisfy it.
+
+## 2026-11-04 — B06: website template, schema, site checks, publish gate
+
+- **Astro 7.4.5 + @astrojs/sitemap 3.7.4**, pinned exactly, with package-lock.json in `templates/site/`.
+  This is newer than the Astro versions the planning docs assumed. The template builds as-is, and the
+  demo build is **deterministic**: three builds, including from a clean `dist/`, gave the same tree digest.
+  That matters, because the publish approval is bound to the digest of `site/dist`.
+- **Copy vs facts:** the site-builder agent writes `site/content.yaml` (per-page copy).
+  `tools/build_site_config.py` merges it with verified facts into `site/site.config.json`, refusing any
+  service page whose `fact` is not a verified service and any copy that fails lint_claims. Business
+  details on the page (name, phone, hours, address, booking link) come only from facts. Titles are
+  "Service in Town | Name" because the strict lint treats "Name | Service Town" as name stuffing.
+- **Synthetic sites** get a red banner and `robots.txt: Disallow: /`. site_check treats that as a pass for
+  fixture clients only. `tools/site_release.py preflight` refuses to publish any fixture client.
+- **JSON-LD:** type allowlist in `tools/schema_gen.py` (barber → HairSalon, pest-control →
+  HomeAndConstructionBusiness; override via `client.yaml → schema_type`, still allowlisted). A
+  service-area business gets `areaServed` with no address and no geo. Hours must be in the
+  "Tue-Fri 10:00-19:00; Sun closed" form.
+- **site_check:** `performance_lcp` is `unknown` in `--local` mode, because no local Lighthouse is
+  installed and PSI needs a public URL + `PAGESPEED_API_KEY`. It is never estimated. A local
+  `page_weight` check (< 500 KB) is added as a proxy. Similarity = word 3-gram Jaccard over `<main>`,
+  limit 0.6.
+- **Publish gate:** `tools/deploy.sh` / `deploy.ps1` (human-run) → `tools/site_release.py preflight`
+  (approved `site_deploy` approval for artifact `site/dist` with the exact build digest, verified like
+  `approvals.py verify`) → y/N → `npx wrangler pages deploy` → `site_release.py consume` (receipt).
+  New client.yaml keys: `cloudflare_pages_project`, `schema_type`. `MRS_ROOT` lets tests point the shell
+  script at a temporary repo copy. The test checks that wrangler (npx) is never invoked without a valid
+  approval.
+- **Not verified:** wrangler's CLI flags (`pages deploy <dir> --project-name --branch`) come from memory;
+  check them against Cloudflare's docs before the first real publish. Google Maps embed via
+  `maps?q=lat,lng&output=embed` (no API key) is likewise unverified.

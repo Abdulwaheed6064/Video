@@ -21,3 +21,9 @@
 - approvals.py request: A2026-11-07-gbp-apply-batch (requested, owner approval required, expires 2026-11-10)
 - questions.md Q4 added (booking link)
 - HUMAN NEXT (demo only): send description-options.md to owner; approve: `uv run python tools/approvals.py approve A2026-11-07-gbp-apply-batch --by A --owner-by "owner via WhatsApp" --owner-at <time>`; apply the 4 fields in the GBP UI in one sitting; `uv run python tools/approvals.py consume A2026-11-07-gbp-apply-batch --by A`
+
+## 2026-11-08 · days 3–6 · Claude Code (cloud) [B06 demo run]
+- site-builder: site/content.yaml (home, contact, skin-fade-bradford, beard-trim-bradford); build_site_config → site.config.json; Astro build OK (4 indexable pages + 404)
+- site-auditor: site_check --local, 11 pass / 0 fail / 1 unknown (LCP not measurable locally) → site/audit-2026-11-08.json, .md
+- Not requested for approval: synthetic demo sites are never published (site_release.py refuses fixture clients)
+- HUMAN NEXT: none (demo client)

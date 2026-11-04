@@ -1,0 +1,10 @@
+---
+// Primary actions: call (always), book (only with a verified booking URL), directions (storefront only).
+import config from '../../site.config.json';
+const b = config.business;
+---
+<div class="actions">
+  <a class="btn btn-call" href={`tel:${b.phone_tel}`}>Call {b.phone_display}</a>
+  {b.booking_url && <a class="btn btn-secondary" href={b.booking_url} rel="noopener">Book online</a>}
+  {b.address_public && b.directions_url && <a class="btn btn-secondary" href={b.directions_url} rel="noopener">Get directions</a>}
+</div>
