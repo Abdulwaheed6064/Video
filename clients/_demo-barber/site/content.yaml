@@ -1,0 +1,41 @@
+# SYNTHETIC: site copy for the demo client, written by site-builder (B06 demo).
+# Rules: business facts only from verified facts (cite fact ids); general descriptions of a service are
+# allowed; no claims (best, years, awards, prices). Every text is linted by tools/build_site_config.py.
+# Titles: "Service in Town | Name" (30–65 chars). Meta descriptions: 70–160 chars. One H1 per page.
+schema_version: 1
+synthetic: true
+home:
+  title: "Barber shop in Bradford | Demo Fade Co. (fictional)"
+  meta_description: "Demo Fade Co. (fictional) is a barber shop in Bradford for skin fades and beard trims. Open Tuesday to Saturday. Call (905) 555-0100."
+  h1: "Barber shop in Bradford"
+  intro:
+    - "Demo Fade Co. (fictional) is a barber shop in Bradford. We do skin fades and beard trims, Tuesday to Saturday."
+    - "Call (905) 555-0100 with questions, or see the hours and map below."
+contact:
+  title: "Contact and hours in Bradford | Demo Fade Co. (fictional)"
+  meta_description: "Phone number, opening hours, address and map for Demo Fade Co. (fictional), a barber shop in Bradford, Ontario."
+  h1: "Contact and hours"
+  intro:
+    - "The quickest way to reach us is by phone during opening hours."
+services:
+  - fact: F005
+    slug: skin-fade-bradford
+    keyword: "fade haircut bradford"
+    title: "Skin fade haircut in Bradford | Demo Fade Co. (fictional)"
+    meta_description: "Skin fade haircuts in Bradford at Demo Fade Co. (fictional): sides and back taken down to the skin and blended into the length on top."
+    h1: "Skin fade haircut in Bradford"
+    body:
+      - "A skin fade takes the sides and back down to bare skin at the bottom and blends gradually into longer hair on top. The height of the fade, low, mid or high, changes the whole look, so tell your barber where you want the blend to start."
+      - "Bring a photo if you have a style in mind. A fade grows out over a few weeks; many people come back regularly to keep the line sharp."
+      - "Skin fades are one of the two services we offer at our Bradford shop, along with beard trims."
+    image_alt: "Skin fade haircut at Demo Fade Co. (fictional)"
+  - fact: F006
+    slug: beard-trim-bradford
+    keyword: null
+    title: "Beard trim in Bradford | Demo Fade Co. (fictional)"
+    meta_description: "Beard trims in Bradford at Demo Fade Co. (fictional): length taken down evenly, neckline and cheek lines cleaned up, shape kept natural."
+    h1: "Beard trim in Bradford"
+    body:
+      - "A beard trim brings the length down evenly, tidies the neckline under the jaw and cleans up the cheek line so the shape looks deliberate rather than overgrown."
+      - "Say whether you are keeping length or going shorter, and whether you want a sharp or soft cheek line. A trim pairs well with a haircut so the sideburns blend into the beard."
+    image_alt: "Beard trim at Demo Fade Co. (fictional)"

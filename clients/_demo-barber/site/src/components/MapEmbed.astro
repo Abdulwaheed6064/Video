@@ -1,0 +1,15 @@
+---
+// Google Maps iframe embed (no API key). For hidden-address businesses the URL points at the town, not the base.
+import config from '../../site.config.json';
+---
+<div class="map">
+  <iframe
+    title={`Map: ${config.business.name}`}
+    src={config.map_embed_url}
+    width="600"
+    height="360"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+  ></iframe>
+</div>

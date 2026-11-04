@@ -34,6 +34,9 @@
     "gbp_status": {"enum": ["active", "pending_verification", "suspended"]},
     "place_id": {"type": ["string", "null"]},
     "site_url": {"type": ["string", "null"], "pattern": "^https?://"},
+    "schema_type": {"type": "string", "description": "schema.org type override; must be in tools/schema_gen.py ALLOWED_TYPES"},
+    "cloudflare_pages_project": {"type": ["string", "null"], "pattern": "^[a-z0-9][a-z0-9-]{0,57}$",
+                                 "description": "Cloudflare Pages project the human-run publish script targets"},
     "sprint_start": {"type": ["string", "null"], "format": "date"},
     "target": {
       "type": "object",

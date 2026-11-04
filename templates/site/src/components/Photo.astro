@@ -1,0 +1,13 @@
+---
+// Photo slot. Until the owner supplies real photos (assets/ with rights note) it shows a neutral
+// placeholder that is clearly labelled, so nobody mistakes it for the business.
+import { Image } from 'astro:assets';
+import placeholder from '../assets/placeholder.svg';
+
+interface Props { alt: string }
+const { alt } = Astro.props;
+---
+<figure class="photo">
+  <Image src={placeholder} alt={alt} width={800} height={500} loading="lazy" />
+  <figcaption>Placeholder: replace with a real photo of the business</figcaption>
+</figure>

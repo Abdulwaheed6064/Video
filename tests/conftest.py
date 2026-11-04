@@ -13,9 +13,14 @@ LEDGER_HEADER = "date,client,provider,endpoint,units,cost_usd,scan_id\n"
 
 
 def copy_demo(dest: Path) -> Path:
-    """Copy the demo client without its generated scans (scans/ keeps only .gitkeep)."""
-    shutil.copytree(DEMO, dest, ignore=lambda d, names: [n for n in names if Path(d).name == "scans"
-                                                          and n != ".gitkeep"])
+    """Copy the demo client without generated scans (scans/ keeps only .gitkeep) or site build outputs."""
+    def ignore(d: str, names: list[str]) -> list[str]:
+        skip = [n for n in names if n in {"node_modules", "dist", ".astro"}]
+        if Path(d).name == "scans":
+            skip += [n for n in names if n != ".gitkeep"]
+        return skip
+
+    shutil.copytree(DEMO, dest, ignore=ignore)
     return dest
 
 

@@ -1,10 +1,10 @@
 # Project status
 
-Last updated: 2026-11-04 (B05, Claude Code cloud)
+Last updated: 2026-11-04 (B06, Claude Code cloud)
 
 ## Current phase
 
-**B05 implemented → ready for B06 (suggested tool: Codex).** B03 live smoke test still pending on your PC.
+**B06 implemented → ready for B07.** B03 live smoke test still pending on your PC.
 
 ## Build steps
 
@@ -16,7 +16,7 @@ Last updated: 2026-11-04 (B05, Claude Code cloud)
 | B03 | DataForSEO adapter | implemented (offline) · **pending live test** | API details + prices unverified (docs blocked in cloud) |
 | B04 | Keyword/competitor + prospect audit | implemented | demo outputs lint-clean (B05) |
 | B05 | GBP auditor/optimizer + compliance lint | implemented | demo compliance = self-review (re-check in B11) |
-| B06 | Website template, schema, site checks, deploy | not started | |
+| B06 | Website template, schema, site checks, deploy | implemented | built in Claude Code (not Codex); LCP unmeasured locally; wrangler flags unverified |
 | B07 | Citations + NAP checker | not started | |
 | B08 | Reviews, content, links, QR card | not started | |
 | B09 | Reporter, orchestrator, `/sprint` | not started | |
@@ -67,6 +67,13 @@ Last updated: 2026-11-04 (B05, Claude Code cloud)
 - Demo day 2: gbp/current.yaml, audit.md/json, batch 2026-11-07, description options, services, Q&A seed,
   photo shot list, 2 compliance PASS reports, approval `A2026-11-07-gbp-apply-batch` (requested)
 
+## Implemented in B06
+
+- `templates/site/` (Astro 7, config-driven), `tools/build_site_config.py`, `tools/schema_gen.py`,
+  `tools/site_check.py`, `tools/site_release.py`, `tools/deploy.sh` + `.ps1` (human-run publish scripts)
+- Demo site built in `clients/_demo-barber/site/` (dist/ and node_modules/ are git-ignored); site_check
+  11 pass / 1 unknown (LCP)
+
 ## Pending: B03 live smoke test (local only, ≤ US$2, operator must say "approve live test")
 
 1. On your PC, check the DataForSEO docs + pricing against DECISIONS.md "2026-11-04 — B03" (endpoints,
@@ -90,5 +97,5 @@ Last updated: 2026-11-04 (B05, Claude Code cloud)
 
 ## Stubbed / not real yet
 
-Every `tools/` script after B05 (schema_gen, site_check, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
+Every `tools/` script after B06 (nap_check, review_card, render_report, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
 exist until their build step runs.

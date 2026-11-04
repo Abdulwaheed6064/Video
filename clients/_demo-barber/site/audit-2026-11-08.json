@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "client": "_demo-barber",
+  "date": "2026-11-08",
+  "mode": "local",
+  "target": "site/dist",
+  "checks": {
+    "titles": {
+      "status": "pass",
+      "detail": "4 indexable page(s)",
+      "issues": []
+    },
+    "meta": {
+      "status": "pass",
+      "detail": "meta description 70–160 chars",
+      "issues": []
+    },
+    "h1": {
+      "status": "pass",
+      "detail": "exactly one H1 per page",
+      "issues": []
+    },
+    "canonical": {
+      "status": "pass",
+      "detail": "absolute canonical = site URL + path",
+      "issues": []
+    },
+    "nap": {
+      "status": "pass",
+      "detail": "name, phone, address on every page",
+      "issues": []
+    },
+    "schema": {
+      "status": "pass",
+      "detail": "JSON-LD extracted with extruct",
+      "issues": []
+    },
+    "robots": {
+      "status": "pass",
+      "detail": "synthetic demo blocks all crawling by design",
+      "issues": []
+    },
+    "sitemap": {
+      "status": "pass",
+      "detail": "4 URL(s) listed",
+      "issues": []
+    },
+    "internal_links": {
+      "status": "pass",
+      "detail": "internal links and assets resolve",
+      "issues": []
+    },
+    "similarity": {
+      "status": "pass",
+      "detail": "max 0.062 (limit 0.6)",
+      "issues": []
+    },
+    "page_weight": {
+      "status": "pass",
+      "detail": "max 7826 bytes (limit 500000)",
+      "issues": []
+    },
+    "performance_lcp": {
+      "status": "unknown",
+      "detail": "not measured: local mode (run with --url and PAGESPEED_API_KEY after a preview deploy)",
+      "issues": []
+    }
+  },
+  "pages": [
+    "/",
+    "/404.html",
+    "/beard-trim-bradford/",
+    "/contact/",
+    "/skin-fade-bradford/"
+  ],
+  "similarity_pairs": [
+    {
+      "a": "/",
+      "b": "/beard-trim-bradford/",
+      "similarity": 0.042
+    },
+    {
+      "a": "/",
+      "b": "/contact/",
+      "similarity": 0.008
+    },
+    {
+      "a": "/",
+      "b": "/skin-fade-bradford/",
+      "similarity": 0.04
+    },
+    {
+      "a": "/beard-trim-bradford/",
+      "b": "/contact/",
+      "similarity": 0.009
+    },
+    {
+      "a": "/beard-trim-bradford/",
+      "b": "/skin-fade-bradford/",
+      "similarity": 0.062
+    },
+    {
+      "a": "/contact/",
+      "b": "/skin-fade-bradford/",
+      "similarity": 0.007
+    }
+  ]
+}

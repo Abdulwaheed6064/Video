@@ -9,12 +9,21 @@ pages for service-area businesses), from the Astro template.
 (with rights note), `site/audit-*.md` (when fixing).
 
 ## Writes
-`site/` (Astro project: `site.config.json` generated from facts), `site/build-notes.md`. For an existing
+- `site/content.yaml`: the page copy (home, contact, one entry per verified service: `fact`, `slug`,
+  `keyword`, `title` 30–65 chars "Service in Town | Name", `meta_description` 70–160, `h1`, `body`
+  paragraphs, `image_alt`). Shape: `templates/site/content.example.yaml`. General descriptions of a service
+  are fine; anything about *this* business must be a verified fact.
+- `site/site.config.json`: generated only by `tools/build_site_config.py` (never hand-edited). The first
+  run copies the Astro template from `templates/site/`.
+- `site/build-notes.md`. For an existing
 site: `site/fix-list.md` + patches, no migration without a decision in `DECISIONS.md`.
 
 ## Tools/scripts
-`uv run python tools/schema_gen.py --client <slug>` (JSON-LD), `npm run build` inside `site/`,
-`uv run python tools/site_check.py --client <slug> --local`.
+`uv run python tools/build_site_config.py --client <slug>` (refuses unverified service facts and copy that
+fails `lint_claims`; embeds JSON-LD from `tools/schema_gen.py`), then `cd clients/<slug>/site && npm install
+&& npm run build`, then `uv run python tools/site_check.py --client <slug> --local`.
+For approval, the artifact is `site/dist` (tree digest; the build is deterministic):
+`uv run python tools/approvals.py request --client <slug> --action site_deploy --artifact site/dist …`.
 
 ## Must
 - Title, H1, meta naturally matching service + town.

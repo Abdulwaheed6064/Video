@@ -1,0 +1,67 @@
+---
+// Shared page shell: <head> SEO tags + JSON-LD, header with click-to-call, NAP footer.
+import config from '../../site.config.json';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;            // e.g. "/" or "/skin-fade-bradford/"
+  noindex?: boolean;
+}
+const { title, description, path, noindex = false } = Astro.props;
+const b = config.business;
+const canonical = new URL(path, config.site_url).href;
+const jsonld = JSON.stringify(config.jsonld);
+---
+<!doctype html>
+<html lang={config.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={b.name} />
+    <meta property="og:locale" content={config.lang.replace('-', '_')} />
+    <meta name="theme-color" content="#1f3a5f" />
+    <script type="application/ld+json" set:html={jsonld} />
+  </head>
+  <body>
+    {config.synthetic && <div class="synthetic-banner">SYNTHETIC DEMO SITE: fictional business, not for publishing</div>}
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/">{b.name}</a>
+        <nav aria-label="Main">
+          {config.services.map((s) => <a href={`/${s.slug}/`}>{s.name}</a>)}
+          <a href="/contact/">Contact</a>
+        </nav>
+        <a class="btn btn-call" href={`tel:${b.phone_tel}`}>Call {b.phone_display}</a>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="nap" itemscope>
+          <strong>{b.name}</strong>
+          {b.address_public && b.address_lines.map((line) => <span>{line}</span>)}
+          {!b.address_public && <span>Serving {b.service_area.join(', ')}</span>}
+          <a href={`tel:${b.phone_tel}`}>{b.phone_display}</a>
+        </div>
+        <div>
+          <strong>Hours</strong>
+          <dl class="hours">
+            {b.hours.map((h) => <><dt>{h.label}</dt><dd>{h.value}</dd></>)}
+          </dl>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

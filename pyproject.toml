@@ -4,6 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.12"
 description = "Maps Rank Studio — deterministic tools for compliant local SEO"
 dependencies = [
+    "extruct>=0.18.0",
     "httpx>=0.28.1",
     "jsonschema>=4.26.0",
     "matplotlib>=3.11.2",

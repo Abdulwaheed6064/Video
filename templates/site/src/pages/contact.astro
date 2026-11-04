@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Actions from '../components/Actions.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import config from '../../site.config.json';
+const c = config.contact;
+const b = config.business;
+---
+<Base title={c.title} description={c.meta_description} path="/contact/">
+  <h1>{c.h1}</h1>
+  {c.intro.map((p) => <p>{p}</p>)}
+  <div class="split">
+    <div>
+      <h2>Phone</h2>
+      <p><a href={`tel:${b.phone_tel}`}>{b.phone_display}</a></p>
+      {b.address_public
+        ? <><h2>Address</h2><p>{b.address_lines.map((l) => <>{l}<br /></>)}</p></>
+        : <><h2>Service area</h2><p>{b.service_area.join(', ')}</p></>}
+      <h2>Hours</h2>
+      <dl class="hours">{b.hours.map((h) => <><dt>{h.label}</dt><dd>{h.value}</dd></>)}</dl>
+      <Actions />
+    </div>
+    <MapEmbed />
+  </div>
+</Base>

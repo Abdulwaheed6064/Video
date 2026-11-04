@@ -11,8 +11,10 @@ Check the preview or live site: speed, mobile, indexability, schema, NAP, broken
 must-fix vs nice-to-have.
 
 ## Tools/scripts
-`uv run python tools/site_check.py --client <slug> [--local | --url <url>]` (PageSpeed API or local
-Lighthouse, extruct schema validation, robots/sitemap/canonical, title/H1/meta, NAP vs facts, page similarity).
+`uv run python tools/site_check.py --client <slug> [--local | --url <url>]`: extruct JSON-LD + required
+props, title/H1/meta, canonical, NAP vs facts, robots/sitemap, internal links, page similarity (> 0.6 fails),
+page weight; mobile LCP from PageSpeed Insights only in `--url` mode with `PAGESPEED_API_KEY` (otherwise
+`unknown`. Say so; never estimate it). Local Lighthouse is not wired in (v1).
 
 ## Must
 Report only what the script measured; explain each failure with the fix and the owning agent.
