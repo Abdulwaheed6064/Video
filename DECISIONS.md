@@ -117,3 +117,27 @@ WebSearch/WebFetch, agents/link-prospector.md says "verify each URL loads", and 
 Options: (a) allow free, read-only web research for link-prospector only, written into AGENTS.md
 rule 8 as an exception; (b) add a `tools/url_check.py` script and drop WebFetch from the wrapper.
 Operator to decide before B08.
+
+## 2026-11-04 — B02: grid, geocode, fixture scans, metrics, heatmaps
+
+- **grid.json gains optional keys:** `client_place_id`, `places` (details per place_id) and `organic`
+  (positions at named check points), plus per-point `distance_km`. Metrics need the client's review
+  count/rating and organic position "from scan data" (docs/07 §3), and competitors.py (B04) needs
+  competitor details. Before this, grid.json only held top-3 id strings. docs/06 §6 is updated.
+- **metrics.json shape** is fixed (docs/06 §6). Shares are rounded to 4 dp and ARP to 2 dp.
+  `pct_change` is computed from the rounded values. Not-found points count as depth+1 (21) in
+  `arp_not_found_as_depth_plus_1`. `guarantee_option_a_met` = that ARP is lower than baseline.
+  Comparison is refused if params, keywords, client_place_id or the synthetic flag differ.
+- **Fixture scans:** labels baseline/mid/final map to improvement stages 0/1/2, and any other label
+  counts as stage 2. Scan date = sprint_start + 1/10/20 days (or the label, if it is a date), which
+  keeps output byte-identical for the same seed. 2 error points per scan, never the centre.
+  The client reviews (18/24/30), ratings and competitor numbers are invented and labelled synthetic.
+- **Heatmaps:** plain grid in v1 (800×900 single, 1600×900 before/after), 20+ = not found within
+  depth, a SYNTHETIC watermark on every map, and the business cell outlined. An OpenStreetMap basemap
+  with attribution is a later option.
+- **geocode.py:** Nominatim with a User-Agent naming the project (no personal email), countrycodes=ca,
+  ≥ 1 s between requests, and a cache in `.cache/geocode.json` (git-ignored). Not run live in this
+  session; tests mock the HTTP call.
+- **Demo client:** `target.radius_km` changed from 3 to 1.5. At 0.7 km spacing the 7×7 grid fits
+  entirely inside 3 km, so the target-radius metric would equal the whole-grid metric. 1.5 km is a
+  fictional value chosen to exercise the code.

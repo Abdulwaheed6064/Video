@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "label": "final",
+  "source_scan": "scans/final/grid.json",
+  "baseline_scan": "scans/baseline/grid.json",
+  "params": {
+    "grid_size": 7,
+    "spacing_km": 0.7,
+    "center": [
+      44.1145,
+      -79.565
+    ],
+    "device": "mobile",
+    "language": "en",
+    "depth": 20
+  },
+  "complete": true,
+  "provider": "fixture",
+  "created": "2026-11-25T10:00:00-05:00",
+  "reviews": {
+    "count": 30,
+    "rating": 4.6
+  },
+  "keywords": {
+    "barber bradford": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "found_points": 47,
+      "top3_points": 7,
+      "arp_found_only": 8.19,
+      "arp_not_found_as_depth_plus_1": 8.19,
+      "top3_share": 0.1489,
+      "found_share": 1.0,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 7,
+        "top3_share": 0.5385
+      },
+      "organic": {
+        "shop": 5,
+        "grid-north-edge": 11
+      },
+      "delta": {
+        "arp_found_only": {
+          "baseline": 12.58,
+          "current": 8.19,
+          "change": -4.39,
+          "pct_change": -34.9
+        },
+        "arp_not_found_as_depth_plus_1": {
+          "baseline": 12.94,
+          "current": 8.19,
+          "change": -4.75,
+          "pct_change": -36.7
+        },
+        "found_points": {
+          "baseline": 45,
+          "current": 47,
+          "change": 2,
+          "pct_change": 4.4
+        },
+        "top3_points": {
+          "baseline": 1,
+          "current": 7,
+          "change": 6,
+          "pct_change": 600.0
+        },
+        "found_share": {
+          "baseline": 0.9574,
+          "current": 1.0,
+          "change": 0.0426,
+          "pct_change": 4.4
+        },
+        "top3_share": {
+          "baseline": 0.0213,
+          "current": 0.1489,
+          "change": 0.1276,
+          "pct_change": 599.1
+        },
+        "target_radius_top3_share": {
+          "baseline": 0.0769,
+          "current": 0.5385,
+          "change": 0.4616,
+          "pct_change": 600.3
+        },
+        "target_radius_top3_points": {
+          "baseline": 1,
+          "current": 7,
+          "change": 6,
+          "pct_change": 600.0
+        },
+        "guarantee_option_a_met": true
+      }
+    },
+    "barber shop near me": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "found_points": 47,
+      "top3_points": 7,
+      "arp_found_only": 7.43,
+      "arp_not_found_as_depth_plus_1": 7.43,
+      "top3_share": 0.1489,
+      "found_share": 1.0,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 7,
+        "top3_share": 0.5385
+      },
+      "organic": {
+        "shop": 6,
+        "grid-north-edge": 14
+      },
+      "delta": {
+        "arp_found_only": {
+          "baseline": 10.98,
+          "current": 7.43,
+          "change": -3.55,
+          "pct_change": -32.3
+        },
+        "arp_not_found_as_depth_plus_1": {
+          "baseline": 10.98,
+          "current": 7.43,
+          "change": -3.55,
+          "pct_change": -32.3
+        },
+        "found_points": {
+          "baseline": 47,
+          "current": 47,
+          "change": 0,
+          "pct_change": 0.0
+        },
+        "top3_points": {
+          "baseline": 1,
+          "current": 7,
+          "change": 6,
+          "pct_change": 600.0
+        },
+        "found_share": {
+          "baseline": 1.0,
+          "current": 1.0,
+          "change": 0.0,
+          "pct_change": 0.0
+        },
+        "top3_share": {
+          "baseline": 0.0213,
+          "current": 0.1489,
+          "change": 0.1276,
+          "pct_change": 599.1
+        },
+        "target_radius_top3_share": {
+          "baseline": 0.0769,
+          "current": 0.5385,
+          "change": 0.4616,
+          "pct_change": 600.3
+        },
+        "target_radius_top3_points": {
+          "baseline": 1,
+          "current": 7,
+          "change": 6,
+          "pct_change": 600.0
+        },
+        "guarantee_option_a_met": true
+      }
+    },
+    "fade haircut bradford": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "found_points": 45,
+      "top3_points": 6,
+      "arp_found_only": 11.07,
+      "arp_not_found_as_depth_plus_1": 11.49,
+      "top3_share": 0.1277,
+      "found_share": 0.9574,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 6,
+        "top3_share": 0.4615
+      },
+      "organic": {
+        "shop": 9,
+        "grid-north-edge": 15
+      },
+      "delta": {
+        "arp_found_only": {
+          "baseline": 14.66,
+          "current": 11.07,
+          "change": -3.59,
+          "pct_change": -24.5
+        },
+        "arp_not_found_as_depth_plus_1": {
+          "baseline": 16.28,
+          "current": 11.49,
+          "change": -4.79,
+          "pct_change": -29.4
+        },
+        "found_points": {
+          "baseline": 35,
+          "current": 45,
+          "change": 10,
+          "pct_change": 28.6
+        },
+        "top3_points": {
+          "baseline": 1,
+          "current": 6,
+          "change": 5,
+          "pct_change": 500.0
+        },
+        "found_share": {
+          "baseline": 0.7447,
+          "current": 0.9574,
+          "change": 0.2127,
+          "pct_change": 28.6
+        },
+        "top3_share": {
+          "baseline": 0.0213,
+          "current": 0.1277,
+          "change": 0.1064,
+          "pct_change": 499.5
+        },
+        "target_radius_top3_share": {
+          "baseline": 0.0769,
+          "current": 0.4615,
+          "change": 0.3846,
+          "pct_change": 500.1
+        },
+        "target_radius_top3_points": {
+          "baseline": 1,
+          "current": 6,
+          "change": 5,
+          "pct_change": 500.0
+        },
+        "guarantee_option_a_met": true
+      }
+    }
+  },
+  "reviews_delta": {
+    "baseline": 18,
+    "current": 30,
+    "change": 12,
+    "pct_change": 66.7
+  }
+}

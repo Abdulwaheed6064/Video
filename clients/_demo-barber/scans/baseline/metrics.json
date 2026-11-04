@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "label": "baseline",
+  "source_scan": "scans/baseline/grid.json",
+  "baseline_scan": null,
+  "params": {
+    "grid_size": 7,
+    "spacing_km": 0.7,
+    "center": [
+      44.1145,
+      -79.565
+    ],
+    "device": "mobile",
+    "language": "en",
+    "depth": 20
+  },
+  "complete": true,
+  "provider": "fixture",
+  "created": "2026-11-06T10:00:00-05:00",
+  "reviews": {
+    "count": 18,
+    "rating": 4.6
+  },
+  "keywords": {
+    "barber bradford": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "found_points": 45,
+      "top3_points": 1,
+      "arp_found_only": 12.58,
+      "arp_not_found_as_depth_plus_1": 12.94,
+      "top3_share": 0.0213,
+      "found_share": 0.9574,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 1,
+        "top3_share": 0.0769
+      },
+      "organic": {
+        "shop": 13,
+        "grid-north-edge": 19
+      },
+      "delta": null
+    },
+    "barber shop near me": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "found_points": 47,
+      "top3_points": 1,
+      "arp_found_only": 10.98,
+      "arp_not_found_as_depth_plus_1": 10.98,
+      "top3_share": 0.0213,
+      "found_share": 1.0,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 1,
+        "top3_share": 0.0769
+      },
+      "organic": {
+        "shop": 14,
+        "grid-north-edge": null
+      },
+      "delta": null
+    },
+    "fade haircut bradford": {
+      "valid_points": 47,
+      "error_points": 2,
+      "error_cells": [
+        [
+          2,
+          0
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "found_points": 35,
+      "top3_points": 1,
+      "arp_found_only": 14.66,
+      "arp_not_found_as_depth_plus_1": 16.28,
+      "top3_share": 0.0213,
+      "found_share": 0.7447,
+      "target_radius": {
+        "radius_km": 1.5,
+        "valid_points": 13,
+        "top3_points": 1,
+        "top3_share": 0.0769
+      },
+      "organic": {
+        "shop": 17,
+        "grid-north-edge": null
+      },
+      "delta": null
+    }
+  }
+}

@@ -37,6 +37,7 @@
           "col": {"type": "integer", "minimum": 0},
           "lat": {"type": "number", "minimum": -90, "maximum": 90},
           "lng": {"type": "number", "minimum": -180, "maximum": 180},
+          "distance_km": {"type": "number", "minimum": 0},
           "results": {
             "type": "object",
             "additionalProperties": {
@@ -52,6 +53,42 @@
               }
             }
           }
+        }
+      }
+    },
+    "client_place_id": {"type": ["string", "null"]},
+    "places": {
+      "description": "Details for every place_id seen in the scan (client and competitors), from provider data.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "primary_category": {"type": ["string", "null"]},
+          "rating": {"type": ["number", "null"], "minimum": 0, "maximum": 5},
+          "reviews": {"type": ["integer", "null"], "minimum": 0},
+          "website": {"type": ["string", "null"]},
+          "lat": {"type": ["number", "null"]},
+          "lng": {"type": ["number", "null"]}
+        }
+      }
+    },
+    "organic": {
+      "description": "Organic Google positions of the client's domain at named check points.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["point", "lat", "lng", "keyword", "position", "status"],
+        "properties": {
+          "point": {"type": "string", "minLength": 1},
+          "lat": {"type": "number"},
+          "lng": {"type": "number"},
+          "keyword": {"type": "string", "minLength": 1},
+          "position": {"type": ["integer", "null"], "minimum": 1},
+          "status": {"enum": ["ok", "error"]}
         }
       }
     },

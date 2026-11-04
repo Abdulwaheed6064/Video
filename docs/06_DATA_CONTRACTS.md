@@ -152,7 +152,16 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 `client_rank` = position of the client's place_id in the results, `null` if not found within `depth`
 (display as "20+"). Never interpolate missing points; `status: "error"` points are excluded and reported.
 
-`scans/<label>/metrics.json` — produced only by `tools/metrics.py`; definitions in 07.
+Optional grid.json keys (B02): `client_place_id`; `places` (place_id → name, primary_category, rating,
+reviews, website, lat, lng, from provider data, used for competitors and review counts);
+`organic` (list of {point, lat, lng, keyword, position|null, status}); per point `distance_km`.
+
+`scans/<label>/metrics.json` — produced only by `tools/metrics.py`; definitions in 07. Per keyword:
+`valid_points, error_points, error_cells, found_points, top3_points, arp_found_only,
+arp_not_found_as_depth_plus_1, top3_share, found_share, target_radius{radius_km, valid_points,
+top3_points, top3_share}, organic{point: position}, delta` (null without `--baseline`). Top level:
+`reviews{count, rating}`, `reviews_delta`. A delta is `{baseline, current, change, pct_change}` when
+baseline > 0, else `{from: 0, to: N}`.
 
 ## 7. Approvals
 

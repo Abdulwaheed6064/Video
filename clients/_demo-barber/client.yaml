@@ -18,7 +18,7 @@ gbp_status: active
 place_id: null
 sprint_start: 2026-11-05
 target:
-  radius_km: 3
+  radius_km: 1.5
   keywords: ["barber bradford", "barber shop near me", "fade haircut bradford"]
   goal: "top3"
   guarantee_option: A
