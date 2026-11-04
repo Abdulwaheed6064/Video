@@ -11,8 +11,22 @@ review replies, posts, citation plans, reports.
 The proposal file, `knowledge/ranking-rules.md`, `facts.yaml`, `client.yaml`.
 
 ## Writes
-`reviews/compliance/<file-stem>-<YYYY-MM-DD>.md` containing: `RESULT: PASS` or `RESULT: FAIL`,
-the SHA-256 of the reviewed file, and line-level issues (line, quote, rule, fix).
+`reviews/compliance/<file-stem>-<YYYY-MM-DD>.md` (schema `schemas/compliance_report.schema.json`):
+
+```text
+---
+result: PASS            # or FAIL
+sha256: <64-hex digest from tools/approvals.py hash>
+file: <client-relative path of the reviewed file, e.g. gbp/changes/2026-11-06-batch.yaml>
+date: YYYY-MM-DD
+reviewer: <tool + model>
+---
+RESULT: PASS            # must match the front matter
+<line-level issues: line, quote, rule, fix>
+```
+
+`tools/approvals.py` accepts the report only if `result` is PASS and `sha256` + `file` match the
+artifact exactly.
 
 ## Tools/scripts
 `uv run python tools/lint_claims.py <file> --client <slug>` first; then your own review.

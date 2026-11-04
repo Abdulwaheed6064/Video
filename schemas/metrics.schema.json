@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metrics.schema.json",
+  "title": "scans/<label>/metrics.json (docs/07 §3) - written only by tools/metrics.py",
+  "description": "Core fields fixed in B01; tools/metrics.py (B02) may add fields per keyword.",
+  "type": "object",
+  "required": ["schema_version", "synthetic", "source_scan", "params", "keywords", "created"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "label": {"type": "string"},
+    "source_scan": {"type": "string", "minLength": 1},
+    "baseline_scan": {"type": ["string", "null"]},
+    "params": {"type": "object"},
+    "created": {"type": "string", "minLength": 10},
+    "keywords": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["valid_points", "error_points", "found_points", "top3_points", "arp_found_only",
+                     "arp_not_found_as_depth_plus_1", "top3_share", "found_share", "target_radius"],
+        "properties": {
+          "valid_points": {"type": "integer", "minimum": 0},
+          "error_points": {"type": "integer", "minimum": 0},
+          "found_points": {"type": "integer", "minimum": 0},
+          "top3_points": {"type": "integer", "minimum": 0},
+          "arp_found_only": {"type": ["number", "null"], "minimum": 1},
+          "arp_not_found_as_depth_plus_1": {"type": ["number", "null"], "minimum": 1},
+          "top3_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "found_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "target_radius": {
+            "type": "object",
+            "required": ["radius_km", "valid_points", "top3_points", "top3_share"],
+            "properties": {
+              "radius_km": {"type": "number", "exclusiveMinimum": 0},
+              "valid_points": {"type": "integer", "minimum": 0},
+              "top3_points": {"type": "integer", "minimum": 0},
+              "top3_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+            }
+          },
+          "delta": {"type": ["object", "null"]}
+        }
+      }
+    }
+  }
+}

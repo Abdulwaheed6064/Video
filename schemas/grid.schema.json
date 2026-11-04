@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grid.schema.json",
+  "title": "scans/<label>/grid.json (docs/06 §6)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "synthetic", "provider", "endpoint", "params", "keywords", "points",
+               "complete", "cost_usd", "created"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "provider": {"type": "string", "minLength": 1},
+    "endpoint": {"type": "string", "minLength": 1},
+    "params": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grid_size", "spacing_km", "center", "device", "language", "depth"],
+      "properties": {
+        "grid_size": {"type": "integer", "minimum": 1},
+        "spacing_km": {"type": "number", "exclusiveMinimum": 0},
+        "center": {"type": "array", "prefixItems": [{"type": "number"}, {"type": "number"}],
+                   "minItems": 2, "maxItems": 2},
+        "device": {"enum": ["mobile", "desktop"]},
+        "language": {"type": "string"},
+        "depth": {"type": "integer", "minimum": 1}
+      }
+    },
+    "keywords": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["row", "col", "lat", "lng", "results"],
+        "properties": {
+          "row": {"type": "integer", "minimum": 0},
+          "col": {"type": "integer", "minimum": 0},
+          "lat": {"type": "number", "minimum": -90, "maximum": 90},
+          "lng": {"type": "number", "minimum": -180, "maximum": 180},
+          "results": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["client_rank", "status"],
+              "properties": {
+                "client_rank": {"type": ["integer", "null"], "minimum": 1},
+                "top3": {"type": "array", "maxItems": 3, "items": {"type": "string"}},
+                "status": {"enum": ["ok", "error"]},
+                "error": {"type": "string"},
+                "raw": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "complete": {"type": "boolean"},
+    "cost_usd": {"type": "number", "minimum": 0},
+    "created": {"type": "string", "minLength": 10}
+  }
+}

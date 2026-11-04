@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "gbp_change_batch.schema.json",
+  "title": "gbp/changes/<YYYY-MM-DD>-batch.yaml (agents/gbp-optimizer.md)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "client", "date", "changes"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "client": {"type": "string", "pattern": "^_?[a-z0-9]+(-[a-z0-9]+)*$"},
+    "date": {"type": "string", "format": "date"},
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "current", "proposed", "reason", "fact_refs", "ui_path", "risk"],
+        "properties": {
+          "field": {"type": "string", "pattern": "^[a-z_]+$"},
+          "current": {},
+          "proposed": {},
+          "reason": {"type": "string", "minLength": 1},
+          "fact_refs": {"type": "array", "items": {"type": "string", "pattern": "^F[0-9]{3,}$"}},
+          "ui_path": {"type": "string", "minLength": 1},
+          "risk": {"enum": ["low", "high"]}
+        },
+        "if": {"properties": {"field": {"enum": ["name", "address", "primary_category"]}}},
+        "then": {"properties": {"risk": {"const": "high"}}}
+      }
+    }
+  }
+}

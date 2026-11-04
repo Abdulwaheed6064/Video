@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "compliance_report.schema.json",
+  "title": "front matter of reviews/compliance/<file-stem>-<YYYY-MM-DD>.md (agents/compliance-reviewer.md)",
+  "description": "The body must also contain a line 'RESULT: PASS' or 'RESULT: FAIL' equal to `result`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result", "sha256", "file", "date"],
+  "properties": {
+    "result": {"enum": ["PASS", "FAIL"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "file": {"type": "string", "minLength": 1},
+    "date": {"type": "string", "format": "date"},
+    "reviewer": {"type": "string"}
+  }
+}

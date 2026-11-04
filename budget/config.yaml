@@ -1,0 +1,8 @@
+# Operator-set budget configuration, read by tools/budget.py.
+# Paid providers bill in USD; client caps (client.yaml -> budget_cad_month) and the global cap
+# (env GLOBAL_BUDGET_CAD_MONTH) are in CAD. This rate converts ledger USD to CAD for cap checks.
+# PLACEHOLDER rate set in B01. The operator must check it against the Bank of Canada rate,
+# update rate_date, and set rate_confirmed: true. budget.py warns until then.
+usd_to_cad: 1.40
+rate_date: 2026-11-04
+rate_confirmed: false

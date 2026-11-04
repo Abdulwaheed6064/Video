@@ -27,4 +27,4 @@ State limits (distance, time, competitor changes). SYNTHETIC banner in fixture m
 Claim causation it can't show ("our posts got you to #1") · hide drops · promise future ranks.
 
 ## Done when
-`check_report_numbers.py` passes and approval is requested.
+`check_report_numbers.py` passes and approval is requested (action `report_send`).

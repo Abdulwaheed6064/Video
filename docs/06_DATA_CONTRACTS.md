@@ -25,7 +25,7 @@ clients/<slug>/
 ├── reviews/             # request-kit/, replies/, inbox.md, velocity.json, compliance/
 ├── content/<YYYY-MM>/   # posts.md, photos.md
 ├── links/prospects.csv
-├── scans/<YYYY-MM-DD>/  # raw/, grid.json, metrics.json, heatmaps
+├── scans/<label>/       # baseline | mid | final | YYYY-MM-DD | m<YYYY-MM>: raw/, grid.json, metrics.json, heatmaps
 ├── approvals/           # one file per approval
 ├── reports/<YYYY-MM-DD>/
 └── assets/              # owner-supplied photos/logos (with rights note)
@@ -69,6 +69,9 @@ contacts:
 budget_cad_month: 15                    # cap for paid scans for this client
 created: 2026-11-04
 ```
+
+Optional keys (B01): `synthetic: true` (required in fixture mode, on every data file), `site_url`
+(live site for site-auditor), `scan.depth` (default 20). Schema: `schemas/client.schema.json`.
 
 ## 3. facts.yaml
 
@@ -125,7 +128,7 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 
 ## 6. Scan files
 
-`scans/<date>/grid.json`
+`scans/<label>/grid.json`
 
 ```json
 {
@@ -149,7 +152,7 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 `client_rank` = position of the client's place_id in the results, `null` if not found within `depth`
 (display as "20+"). Never interpolate missing points; `status: "error"` points are excluded and reported.
 
-`scans/<date>/metrics.json` — produced only by `tools/metrics.py`; definitions in 07.
+`scans/<label>/metrics.json` — produced only by `tools/metrics.py`; definitions in 07.
 
 ## 7. Approvals
 
@@ -158,7 +161,7 @@ Allowed keys (extend via DECISIONS.md): `name`, `phone`, `website`, `hours`, `ho
 ```yaml
 id: A2026-11-06-gbp-batch1
 client: kings-barbers-bradford
-action: gbp_apply_batch            # gbp_apply_batch | site_deploy | post_publish | review_reply | citation_update
+action: gbp_apply_batch            # gbp_apply_batch | site_deploy | post_publish | review_reply | review_kit | citation_update | report_send
 artifact: gbp/changes/2026-11-06-batch.yaml
 artifact_sha256: "9f2c…"           # digest of the exact file approved
 compliance_report: reviews/compliance/2026-11-06-batch-2026-11-06.md
@@ -175,7 +178,10 @@ Rules (enforced by `tools/approvals.py verify`):
 - If the artifact's current SHA-256 differs from `artifact_sha256`, the approval is invalid. Edit → re-approve.
 - Expired or rejected approvals can't be consumed.
 - `consume` records which fields were applied in `gbp/applied.log` / deploy receipt, then sets `consumed`.
-- A compliance report with `PASS` must exist for the same digest.
+- A compliance report with `PASS` must exist for the same digest and file (front matter
+  `result / sha256 / file / date` + a matching `RESULT:` line; `schemas/compliance_report.schema.json`).
+- Owner approval must be recorded when `owner_approval.required` is true (default true for
+  `gbp_apply_batch`, `site_deploy` and `review_kit`, per docs/13 §6).
 
 ## 8. tasks.json / sprint.json
 
