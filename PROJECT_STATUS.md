@@ -98,7 +98,6 @@ Last updated: 2026-11-04 (B07, Claude Code cloud)
 
 - `budget/config.yaml → usd_to_cad` is a placeholder (1.40); confirm and set `rate_confirmed: true`
 - `GLOBAL_BUDGET_CAD_MONTH` must be set (env or `.env`) before any paid call, otherwise budget.py refuses
-- DECISIONS open question: link-prospector web access (decide before B08)
 - Load every URL in `knowledge/citations-canada.csv` on your PC and fill `checked_on` (cloud could not)
 
 ## Stubbed / not real yet
