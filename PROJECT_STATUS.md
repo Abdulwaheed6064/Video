@@ -1,24 +1,24 @@
 # Project status
 
-Last updated: 2026-11-04 (B07, Claude Code cloud)
+Last updated: 2026-11-04 (B08, Claude Code cloud)
 
 ## Current phase
 
-**B07 implemented → ready for B08.** B03 live smoke test still pending on your PC.
+**B08 implemented → ready for B09.** B03 live smoke test still pending on your PC.
 
 ## Build steps
 
 | Step | Name | Status | Notes |
 | --- | --- | --- | --- |
 | B00 | Bootstrap (uv, git, demo client, verify tool docs) | implemented | Codex docs not verified (network); see DECISIONS |
-| B01 | Schemas, validator, approvals, budget | implemented | USD→CAD rate is a placeholder; link-prospector web-access question open |
+| B01 | Schemas, validator, approvals, budget | implemented | USD→CAD rate is a placeholder |
 | B02 | Grid, fixture scans, metrics, heatmaps | implemented | geocode.py not run live (tests mock Nominatim) |
 | B03 | DataForSEO adapter | implemented (offline) · **pending live test** | API details + prices unverified (docs blocked in cloud) |
 | B04 | Keyword/competitor + prospect audit | implemented | demo outputs lint-clean (B05) |
 | B05 | GBP auditor/optimizer + compliance lint | implemented | demo compliance = self-review (re-check in B11) |
 | B06 | Website template, schema, site checks, deploy | implemented | built in Claude Code (not Codex); LCP unmeasured locally; wrangler flags unverified |
 | B07 | Citations + NAP checker | implemented | directory URLs not loaded (cloud network); checked_on blank |
-| B08 | Reviews, content, links, QR card | not started | |
+| B08 | Reviews, content, links, QR card | implemented | CASL reading not legal advice; demo prospects fictional |
 | B09 | Reporter, orchestrator, `/sprint` | not started | |
 | B10 | Fixture dry run + live baseline on pilot | not started | needs pilot business + permission |
 | B11 | Independent audit + fixes | not started | run in the other tool |
@@ -94,14 +94,20 @@ Last updated: 2026-11-04 (B07, Claude Code cloud)
 - `knowledge/citations-canada.csv` (19 directories, URLs unverified), `tools/nap_check.py`, `agents/citation.md`
 - Demo: citations/found.csv → nap-report.md + plan.csv (3 wrong, 1 duplicate, 8 missing)
 
+## Implemented in B08
+
+- `tools/review_card.py`, `tools/review_velocity.py`, `templates/review-card/`, `templates/messages/`,
+  `schemas/velocity.schema.json`, validate.py link-prospect rules, review-engine reply guidance,
+  link-prospector web-access rules (AGENTS.md rule 8 exception)
+- Demo: request kit, 3 reply drafts, 4 posts + photos, 10 synthetic prospects, 5 compliance PASS, 3 approvals requested
+
 ## Blocked / needs the operator
 
 - `budget/config.yaml → usd_to_cad` is a placeholder (1.40); confirm and set `rate_confirmed: true`
 - `GLOBAL_BUDGET_CAD_MONTH` must be set (env or `.env`) before any paid call, otherwise budget.py refuses
-- DECISIONS open question: link-prospector web access (decide before B08)
 - Load every URL in `knowledge/citations-canada.csv` on your PC and fill `checked_on` (cloud could not)
 
 ## Stubbed / not real yet
 
-Every `tools/` script after B07 (review_card, render_report, …) and the site/report/card templates. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
+Every `tools/` script after B08 (render_report, check_report_numbers, make_sprint, …) and the report template. Heatmaps have no basemap yet (plain grid). Agent specs reference scripts that do not
 exist until their build step runs.

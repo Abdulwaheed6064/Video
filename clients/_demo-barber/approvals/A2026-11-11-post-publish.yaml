@@ -1,0 +1,20 @@
+id: A2026-11-11-post-publish
+synthetic: true
+client: _demo-barber
+action: post_publish
+artifact: content/2026-11/posts.md
+artifact_sha256: 18956e95c428fd165227109d744db662f04bf60ae9f56046ddb0131d95f726b4
+compliance_report: reviews/compliance/posts-2026-11-11.md
+requested_by: agent:content
+requested_at: '2026-11-11T12:00:00-05:00'
+owner_approval:
+  required: false
+  by: null
+  at: null
+  evidence: null
+operator_approval:
+  by: null
+  at: null
+expires: '2026-11-14'
+status: requested
+consumed_at: null

@@ -1,0 +1,18 @@
+# Printable review card layout, read by tools/review_card.py. Text must stay neutral (same request to
+# everyone, no incentives). lint_claims runs over the rendered text.
+headline: "Thanks for visiting!"
+ask: "Would you leave us a Google review?"
+hint: "Scan with your phone camera"
+colours:
+  background: "#ffffff"
+  ink: "#18202b"
+  accent: "#1f3a5f"
+  muted: "#566273"
+sizes:                      # inches at 300 dpi
+  business:                 # standard North American business card
+    width_in: 3.5
+    height_in: 2.0
+  a6:                       # counter card / table tent
+    width_in: 4.134
+    height_in: 5.827
+dpi: 300

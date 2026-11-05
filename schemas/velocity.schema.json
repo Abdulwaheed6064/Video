@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "velocity.schema.json",
+  "title": "reviews/velocity.json - written only by tools/review_velocity.py",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "client", "points", "intervals", "overall_per_week"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "synthetic": {"type": "boolean"},
+    "client": {"type": "string"},
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "date", "count", "source"],
+        "properties": {
+          "label": {"type": "string"},
+          "date": {"type": "string", "format": "date"},
+          "count": {"type": "integer", "minimum": 0},
+          "rating": {"type": ["number", "null"], "minimum": 0, "maximum": 5},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "intervals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "days", "delta_count", "per_week"],
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "days": {"type": "integer"},
+          "delta_count": {"type": "integer"},
+          "per_week": {"type": ["number", "null"]}
+        }
+      }
+    },
+    "overall_per_week": {"type": ["number", "null"]}
+  }
+}

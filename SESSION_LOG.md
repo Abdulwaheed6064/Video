@@ -176,3 +176,24 @@ Template:
   - `uv run pytest -q`: `174 passed in 7.40s`
 - Stubbed / not working: no directory URL was loaded; `checked_on` is blank for all rows.
 - Next: B08 (reviews, content, links, QR card). Needs a decision on link-prospector web access first (DECISIONS open question).
+
+## 2026-11-04 · Claude cloud · Claude Code · web-access decision + B08 reviews, content, links
+
+- Decision (operator): read-only web access for link-prospector only, with limits → AGENTS.md rule 8,
+  agents/link-prospector.md, wrapper (still no Bash), DECISIONS (closes the open question). Separate commit.
+- Note: PR #8 was still open when the operator said it was merged. I merged it (`c16b5de`) before starting.
+- Files changed (B08): `tools/review_card.py`, `tools/review_velocity.py`, `templates/review-card/card.yaml`,
+  `templates/messages/*`, `schemas/velocity.schema.json`, `tools/validate.py` (velocity + prospects.csv rules),
+  `agents/review-engine.md` (reply guidance), `pyproject.toml`/`uv.lock` (+zxing-cpp dev), docs/06, tests
+  `test_reviews_content.py`; demo `reviews/{inbox.md, request-kit/*, replies/2026-11-11.md, velocity.json,
+  compliance/*-2026-11-11.md}`, `content/2026-11/{posts,photos}.md`, `links/prospects.csv`, 3 approvals, log.md.
+- Commands run (with real results):
+  - `uv run python tools/review_card.py --client _demo-barber --link https://g.page/r/EXAMPLE/review`: first run refused
+    (lint flagged the counter script's own "don't offer discount/free/draw" list) → reworded → 4 card files + messages.md;
+    QR decodes to the link on both cards; digest stable across runs `a07f6cdf…c110` (after pinning the PDF dates)
+  - `uv run python tools/review_velocity.py --client _demo-barber`: 18 → 24 → 30, overall 4.42/week
+  - lint_claims on replies: first `FLAGS: 2` (operator note quoted "free cut") → note moved to log.md → PASS; posts/photos/prospects PASS
+  - `approvals.py request` ×3: A2026-11-11-review-kit (owner approval required), -review-reply, -post-publish
+  - `uv run pytest -q`: `186 passed in 10.84s`; `validate.py clients/_demo-barber`: `OK … 25 file(s) checked, 0 errors`
+- Stubbed / not working: demo prospects fictional/unverified; CASL wording is not legal advice; compliance is self-review.
+- Next: B09 (report template, check_report_numbers, make_sprint, /sprint orchestrator).

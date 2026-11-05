@@ -1,0 +1,20 @@
+id: A2026-11-11-review-reply
+synthetic: true
+client: _demo-barber
+action: review_reply
+artifact: reviews/replies/2026-11-11.md
+artifact_sha256: 956e93cac239d05ec7437f71b71808e55de2702fc2d234198f25bcd427088451
+compliance_report: reviews/compliance/2026-11-11-2026-11-11.md
+requested_by: agent:review-engine
+requested_at: '2026-11-11T12:00:00-05:00'
+owner_approval:
+  required: false
+  by: null
+  at: null
+  evidence: null
+operator_approval:
+  by: null
+  at: null
+expires: '2026-11-14'
+status: requested
+consumed_at: null
